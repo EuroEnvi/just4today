@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ИСТОЧНИК СВЕТА</title>
+    
+    <!-- PWA Settings -->
+    <meta name="theme-color" content="#1e3c72">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Источник">
+    
+    <!-- Icons -->
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="icons/favicon.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" id="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoi0JjRgdGC0L7Rh9C90LjQuiDQodCy0LXRgtCwIiwic2hvcnRfbmFtZSI6ItCY0YHRgtC+0YfQvdC40poiLCJzdGFydF91cmwiOiIuIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzFlM2M3MiIsInRoZW1lX2NvbG9yIjoiIzRDQTFBRiIsImljb25zIjpbeyJzcmMiOiJpY29ucy9pY29uLTE5Mi5wbmciLCJzaXplcyI6IjE5MngxOTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn0seyJzcmMiOiJpY29ucy9pY29uLTUxMi5wbmciLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn1dfQ==">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #1e3c72, #2a5298, #6dd5fa, #ffffff);
+            font-family: 'Courier New', monospace;
+            -webkit-user-select: none;
+            user-select: none;
+            position: fixed;
+            inset: 0;
+        }
+
+        .font-serif-elegant { font-family: 'Georgia', serif; }
+        .font-monospace-digital { font-family: 'Courier New', monospace; }
+        
+        /* --- CLOUD ENGINE CSS --- */
+        #cloud-tunnel {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            perspective: 800px;
+            overflow: hidden;
+            z-index: 0;
+            animation: cameraRoll 20s ease-in-out infinite alternate;
+        }
+
+        .cloud-layer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 800px;
+            height: 800px;
+            margin-left: -400px; 
+            margin-top: -400px;
+            transform-style: preserve-3d;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .cloud-layer img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            image-rendering: auto; 
+        }
+
+        @keyframes flyTowards {
+            0% { transform: translate3d(var(--tx), var(--ty), -1000px) rotate(var(--r)) scale(0.5); opacity: 0; }
+            10% { opacity: 0.8; }
+            80% { opacity: 0.9; }
+            100% { transform: translate3d(var(--tx), var(--ty), 400px) rotate(var(--r)) scale(2); opacity: 0; }
+        }
+
+        @keyframes cameraRoll {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(2deg); }
+        }
+
+        #ui-scene {
+            perspective: 1000px;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        /* GLASS EFFECTS */
+        .holographic-glass {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* LAYERS */
+        .layer {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+            z-index: 20;
+        }
+
+        #intro-layer {
+            opacity: 1;
+            transform: scale(1) translateZ(0);
+            pointer-events: auto;
+            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(25, 50, 100, 0.3) 100%);
+        }
+        #intro-layer.dissolved {
+            opacity: 0;
+            transform: scale(1.5) translateZ(-500px);
+            pointer-events: none;
+        }
+
+        #app-layer {
+            opacity: 0;
+            transform: scale(0.8) translateZ(-100px);
+            pointer-events: none;
+        }
+        #app-layer.active {
+            opacity: 1;
+            transform: scale(1) translateZ(0);
+            pointer-events: auto;
+        }
+
+        /* TEXT STYLES */
+        .text-glow { 
+            color: #ffffff;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .readable-text {
+            color: #1e3a8a;
+            text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+            font-weight: 700;
+        }
+        
+        .readable-white {
+            color: #ffffff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+        }
+
+        .digital-value { font-weight: 900; }
+
+        /* CONTROLS */
+        .cinematic-button {
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            color: #1e3a8a;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .cinematic-button:active { transform: scale(0.95); }
+
+        .control-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e3a8a;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.1s linear;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        /* ANIMATIONS */
+        @keyframes levitate {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(0, -20px) rotate(0deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        #floating-wrapper {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            animation: levitate 8s ease-in-out infinite; 
+        }
+
+        #digit-backdrop {
+            position: absolute;
+            inset: 0;
+            margin: auto;
+            border-radius: 1.5rem;
+            width: 95%;
+            height: 60%; 
+            z-index: -1;
+            transition: transform 0.2s ease-out;
+            background-color: rgba(30, 58, 138, 0.25);
+        }
+
+        #countdown-grid {
+            transform-style: preserve-3d;
+            transition: transform 0.2s ease-out;
+        }
+
+        /* FORMS */
+        .form-input {
+            width: 100%;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(30, 58, 138, 0.3);
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            color: #1e3a8a;
+            font-weight: bold;
+            outline: none;
+            transition: background 0.3s;
+        }
+        .form-input:focus { background: rgba(255,255,255,0.4); }
+        .form-label {
+            display: block;
+            color: #1e3a8a;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+            text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+        }
+        
+        .gender-radio input { display: none; }
+        .gender-radio label {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.2);
+            color: #1e3a8a;
+            font-weight: bold;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border: 1px solid rgba(30, 58, 138, 0.3);
+            transition: all 0.3s;
+        }
+        .gender-radio input:checked + label {
+            background: #1e3a8a;
+            color: white;
+        }
+        .gender-radio label:first-of-type { border-radius: 0.5rem 0 0 0.5rem; }
+        .gender-radio label:last-of-type { border-radius: 0 0.5rem 0.5rem 0; border-left: none; }
+
+    </style>
+</head>
+<body>
+
+    <!-- CLOUD CSS ENGINE -->
+    <div id="cloud-tunnel"></div>
+
+    <div id="ui-scene">
+        
+        <!-- INTRO LAYER -->
+        <div id="intro-layer" class="layer">
+            <div id="intro-setup" class="flex flex-col items-center w-full max-w-md p-6 text-center relative z-30 h-full justify-center">
+                <h1 class="text-5xl md:text-7xl font-serif-elegant text-white mb-2 text-glow" style="text-shadow: 0 0 30px rgba(255,255,255,0.8);">СВЕТ</h1>
+                
+                <div class="holographic-glass p-6 rounded-2xl w-full mb-6 relative text-left">
+                    <div class="mb-4">
+                        <label class="form-label">Ваше Имя</label>
+                        <input type="text" id="intro-name" class="form-input text-center font-serif-elegant" placeholder="Имя">
+                    </div>
+                    <div class="mb-4 text-center">
+                        <label class="form-label mb-2">Пол</label>
+                        <div class="flex justify-center gender-radio">
+                            <div>
+                                <input type="radio" name="gender" id="gender-m" value="m" checked>
+                                <label for="gender-m">Муж</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="gender" id="gender-f" value="f">
+                                <label for="gender-f">Жен</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">От чего освобождаемся?</label>
+                        <input type="text" id="intro-addiction" class="form-input text-center text-xs" placeholder="Например: алкоголь, курение...">
+                    </div>
+                    <div>
+                        <label class="form-label">Дата начала пути</label>
+                        <input type="datetime-local" id="intro-date-input" class="form-input text-center font-monospace-digital">
+                    </div>
+                </div>
+
+                <button id="start-journey-btn" class="cinematic-button px-10 py-4 rounded-full text-xs font-bold tracking-[0.2em] shadow-lg w-full max-w-xs">
+                    НАЧАТЬ ПУТЬ
+                </button>
+            </div>
+
+            <div id="intro-returning" class="hidden flex-col items-center relative z-30">
+                <div class="text-blue-900 font-bold mb-4 text-lg readable-text" id="welcome-message">С возвращением</div>
+                <button id="enter-app-btn" class="group relative w-48 h-48 md:w-64 md:h-64 rounded-full holographic-glass flex items-center justify-center transition-all duration-700 hover:scale-105 active:scale-95 cursor-pointer border border-white/60 bg-white/30 shadow-2xl">
+                    <div class="absolute inset-0 rounded-full border border-white/60 animate-ping opacity-30"></div>
+                    <div class="text-center relative z-10">
+                        <span class="block text-4xl mb-3 text-blue-800 drop-shadow-md">☀</span>
+                        <span class="text-xs tracking-[0.3em] font-bold text-blue-900 uppercase block">Войти<br>в свет</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- APP LAYER -->
+        <div id="app-layer" class="layer">
+            
+            <!-- MAIN COUNTER SECTION -->
+            <div id="floating-wrapper" class="max-w-5xl h-[60vh] mt-[-5vh] items-center">
+                <!-- Backdrop -->
+                <div id="digit-backdrop" class="holographic-glass shadow-2xl"></div>
+                
+                <div id="countdown-grid" class="relative z-10 flex flex-col items-center w-full select-none">
+                    <div class="flex justify-center gap-2 md:gap-12 text-white font-monospace-digital w-full px-2">
+                        <div class="text-center flex-1">
+                            <div id="years" class="text-5xl md:text-9xl digital-value text-glow leading-none transition-all">00</div>
+                            <div id="years-label" class="text-[9px] md:text-sm opacity-90 mt-2 tracking-[0.3em] font-bold text-white drop-shadow-md">ЛЕТ</div>
+                        </div>
+                        <div class="text-3xl md:text-7xl opacity-80 flex items-start pt-2 font-thin text-white text-shadow">:</div>
+                        <div class="text-center flex-1">
+                            <div id="months" class="text-5xl md:text-9xl digital-value text-glow leading-none transition-all">00</div>
+                            <div id="months-label" class="text-[9px] md:text-sm opacity-90 mt-2 tracking-[0.3em] font-bold text-white drop-shadow-md">МЕС</div>
+                        </div>
+                        <div class="text-3xl md:text-7xl opacity-80 flex items-start pt-2 font-thin text-white text-shadow">:</div>
+                        <div class="text-center flex-1">
+                            <div id="days" class="text-5xl md:text-9xl digital-value text-glow leading-none transition-all">00</div>
+                            <div id="days-label" class="text-[9px] md:text-sm opacity-90 mt-2 tracking-[0.3em] font-bold text-white drop-shadow-md">ДНЕЙ</div>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-6 mt-6 md:mt-12 text-white font-monospace-digital text-lg md:text-2xl tracking-widest opacity-100 readable-white font-bold">
+                        <div class="flex flex-col items-center"><span id="hours">00</span></div>
+                        <span class="opacity-80">:</span>
+                        <div class="flex flex-col items-center"><span id="minutes">00</span></div>
+                        <span class="opacity-80">:</span>
+                        <div class="flex flex-col items-center"><span id="seconds">00</span></div>
+                    </div>
+
+                    <!-- TOTAL DAYS (Cleaner Look) -->
+                    <div class="mt-8 w-full flex justify-center">
+                        <div class="flex flex-col items-center justify-center">
+                            <span class="text-[10px] md:text-xs uppercase tracking-[0.3em] text-white/90 font-bold mb-2 shadow-sm">Всего дней в чистоте</span>
+                            <span id="total-days" class="text-5xl md:text-6xl font-monospace-digital font-bold text-white text-glow leading-none filter drop-shadow-xl">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PERSONALIZED QUOTES -->
+            <div id="quote-container" class="mt-4 h-24 w-11/12 max-w-xl text-center flex items-center justify-center relative z-20">
+                <p id="quote-text" class="text-sm md:text-lg italic text-blue-900 font-serif-elegant leading-relaxed font-bold" style="text-shadow: 0 1px 1px rgba(255,255,255,0.8);"></p>
+            </div>
+
+            <!-- BUTTONS AND BADGE CONTAINER -->
+            <div class="absolute bottom-6 w-full flex flex-col items-center z-50 pointer-events-auto gap-6">
+                <!-- Action Buttons -->
+                <div class="flex gap-12">
+                    <button id="settings-btn" class="control-btn hover:bg-white/40 active:scale-95">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.52a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </button>
+
+                    <button id="reset-btn" class="control-btn hover:bg-red-100 hover:border-red-400/50 text-blue-900 hover:text-red-600 active:scale-95">
+                        <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 60 60">
+                            <circle class="progress-ring__circle" stroke="#ef4444" stroke-width="3" fill="transparent" r="28" cx="30" cy="30" stroke-dasharray="175.9" stroke-dashoffset="175.9"></circle>
+                        </svg>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                            <path d="M3 3v5h5"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- ADDICTION BADGE (Bottom) -->
+                <div class="px-6 py-2 rounded-full holographic-glass border-white/20 bg-white/10 backdrop-blur-sm">
+                    <span class="text-[10px] uppercase tracking-widest font-bold text-blue-900 opacity-80" id="display-addiction">СВОБОДА</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODALS -->
+    <div id="modal-overlay" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-6 opacity-0 transition-opacity duration-500">
+        <div id="modal-content" class="holographic-glass p-8 rounded-3xl max-w-sm w-full text-center transform scale-90 transition-transform duration-500 border border-white/50 bg-white/40">
+            <h3 class="text-2xl font-serif-elegant text-blue-900 mb-4 font-bold">Всё в порядке</h3>
+            <p class="text-blue-900/80 mb-8 leading-relaxed text-sm font-semibold">
+                Срыв — это не конец пути, а часть опыта. <br><br>
+                Важно не то, что ты упал, а то, что ты готов встать. <br>
+                <span class="block mt-4 text-blue-900 font-bold">Начнем с чистого листа?</span>
+            </p>
+            <div class="flex flex-col gap-3">
+                <button id="confirm-reset" class="cinematic-button py-4 rounded-xl bg-red-500/80 text-white border-none hover:bg-red-600 w-full font-bold text-xs tracking-widest shadow-lg">ДА, Я ГОТОВ</button>
+                <button id="cancel-reset" class="py-4 rounded-xl text-blue-900/70 hover:text-blue-900 transition-colors w-full text-xs uppercase tracking-widest font-bold">Отмена</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="settings-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-6 backdrop-blur-md bg-white/30 transition-opacity duration-300">
+        <div class="holographic-glass p-6 rounded-3xl max-w-sm w-full relative border border-white/50 bg-white/60 overflow-y-auto max-h-[90vh]">
+            <h3 class="text-xl font-serif-elegant text-blue-900 mb-6 text-center font-bold">Настройки</h3>
+            
+            <div class="space-y-4 mb-6 text-left">
+                <div>
+                    <label class="form-label">Имя</label>
+                    <input type="text" id="settings-name" class="form-input">
+                </div>
+                
+                <div>
+                    <label class="form-label">Пол</label>
+                    <div class="flex gender-radio">
+                        <div>
+                            <input type="radio" name="settings-gender" id="s-gender-m" value="m">
+                            <label for="s-gender-m" class="w-full text-center">Муж</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="settings-gender" id="s-gender-f" value="f">
+                            <label for="s-gender-f" class="w-full text-center">Жен</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="form-label">Цель (от чего)</label>
+                    <input type="text" id="settings-addiction" class="form-input">
+                </div>
+
+                <div>
+                    <label class="form-label">Дата начала</label>
+                    <input type="datetime-local" id="settings-date-input" class="form-input text-center">
+                </div>
+            </div>
+
+            <button id="save-settings" class="cinematic-button py-4 w-full rounded-xl text-xs font-bold tracking-widest bg-blue-900/80 text-white hover:bg-blue-900">СОХРАНИТЬ</button>
+            <button id="close-settings" class="absolute top-4 right-4 text-blue-900/50 hover:text-blue-900 p-2 font-bold text-xl">✕</button>
+        </div>
+    </div>
+
+    <script>
+        // --- CLOUD ENGINE ---
+        const CLOUD_IMAGES = ['img/cloud-01.png', 'img/cloud-02.png', 'img/cloud-03.png', 'img/cloud-04.png'];
+        const TUNNEL = document.getElementById('cloud-tunnel');
+        const CLOUD_COUNT = 15;
+        const FLY_DURATION = 12;
+
+        function initClouds() {
+            for (let i = 0; i < CLOUD_COUNT; i++) createCloud(i);
+        }
+
+        function createCloud(index) {
+            const el = document.createElement('div');
+            el.className = 'cloud-layer';
+            const img = document.createElement('img');
+            img.src = CLOUD_IMAGES[Math.floor(Math.random() * CLOUD_IMAGES.length)];
+            img.onerror = () => { img.src = 'https://assets.codepen.io/1233608/cloud-01.png'; };
+            el.appendChild(img);
+
+            const x = (Math.random() - 0.5) * 800;
+            const y = (Math.random() - 0.5) * 400;
+            const r = (Math.random() - 0.5) * 60;
+            const delay = -(FLY_DURATION / CLOUD_COUNT) * index;
+
+            el.style.setProperty('--tx', `${x}px`);
+            el.style.setProperty('--ty', `${y}px`);
+            el.style.setProperty('--r', `${r}deg`);
+            el.style.animation = `flyTowards ${FLY_DURATION}s linear infinite`;
+            el.style.animationDelay = `${delay}s`;
+            TUNNEL.appendChild(el);
+        }
+
+        // --- DATA & LOGIC ---
+        const STORAGE_KEY = 'sobriety_data_v2';
+        
+        // Use placeholder {name} for dynamic insertion
+        const QUOTES_DATA = [
+            { m: "{name}, каждый день — твоя победа.", f: "{name}, каждый день — твоя победа." },
+            { m: "{name}, ты кузнец своего счастья.", f: "{name}, ты творец своего счастья." },
+            { m: "{name}, иди вперед, не оборачивайся.", f: "{name}, иди вперед, не оборачивайся." },
+            { m: "{name}, твоя воля — твой меч.", f: "{name}, твоя воля — твой щит." },
+            { m: "{name}, я в тебя верю.", f: "{name}, я в тебя верю." },
+            { m: "{name}, будь стойким перед лицом бури.", f: "{name}, будь сильной перед лицом бури." },
+            { m: "{name}, свобода — это твой выбор.", f: "{name}, свобода — это твой выбор." },
+            { m: "{name}, ты — капитан своей души.", f: "{name}, ты — хозяйка своей души." },
+            { m: "{name}, свет внутри тебя разгонит тьму.", f: "{name}, свет внутри тебя разгонит тьму." },
+            { m: "{name}, ты не один на этом пути.", f: "{name}, ты не одна на этом пути." },
+            { m: "{name}, твое прошлое не определяет тебя.", f: "{name}, твое прошлое не определяет тебя." },
+            { m: "{name}, сегодня ты стал лучше, чем вчера.", f: "{name}, сегодня ты стала лучше, чем вчера." },
+            { m: "{name}, держись курса.", f: "{name}, держись курса." },
+            { m: "{name}, почувствуй силу в своих руках.", f: "{name}, почувствуй силу в своем сердце." },
+            { m: "{name}, ты достоин лучшей жизни.", f: "{name}, ты достойна лучшей жизни." },
+            { m: "{name}, путь к вершине начинается с шага.", f: "{name}, путь к вершине начинается с шага." },
+            { m: "{name}, ты вернул себе свою жизнь.", f: "{name}, ты вернула себе свою жизнь." },
+            { m: "{name}, гордись тем, кто ты есть.", f: "{name}, гордись тем, кто ты есть." },
+            { m: "{name}, не сдавайся, ты уже близко.", f: "{name}, не сдавайся, ты уже близко." },
+            { m: "{name}, этот мир нуждается в тебе здоровом.", f: "{name}, этот мир нуждается в тебе здоровой." }
+        ];
+
+        // State
+        let userData = {
+            startTimestamp: null,
+            name: '',
+            gender: 'm',
+            addiction: ''
+        };
+
+        const introLayer = document.getElementById('intro-layer');
+        const appLayer = document.getElementById('app-layer');
+        const introSetup = document.getElementById('intro-setup');
+        const introReturning = document.getElementById('intro-returning');
+        let countdownInterval;
+
+        function initialize() {
+            initClouds();
+            document.body.addEventListener('touchstart', () => { if(navigator.vibrate) navigator.vibrate(10); }, {once:true});
+
+            const loaded = localStorage.getItem(STORAGE_KEY);
+            if (loaded) {
+                userData = JSON.parse(loaded);
+                showReturning();
+            } else {
+                showSetup();
+            }
+        }
+
+        function showSetup() {
+            introReturning.classList.add('hidden'); introReturning.style.display = 'none';
+            introSetup.classList.remove('hidden'); introSetup.style.display = 'flex';
+        }
+
+        function showReturning() {
+            introSetup.classList.add('hidden'); introSetup.style.display = 'none';
+            introReturning.classList.remove('hidden'); introReturning.style.display = 'flex';
+            
+            const welcomeMsg = document.getElementById('welcome-message');
+            const namePart = userData.name ? `, ${userData.name}` : '';
+            welcomeMsg.innerText = `С возвращением${namePart}`; 
+            
+            startTimer(userData.startTimestamp);
+        }
+
+        function enterApp() {
+            if(navigator.vibrate) navigator.vibrate(50);
+            
+            document.getElementById('display-addiction').innerText = userData.addiction ? `СВОБОДА ОТ: ${userData.addiction}` : "СВОБОДА";
+
+            introLayer.classList.add('dissolved');
+            setTimeout(() => {
+                introLayer.style.display = 'none';
+                appLayer.classList.add('active');
+                startQuoteCycle();
+            }, 800);
+        }
+
+        // SAVE & START (First Time)
+        document.getElementById('start-journey-btn').addEventListener('click', () => {
+            const dateVal = document.getElementById('intro-date-input').value;
+            const nameVal = document.getElementById('intro-name').value;
+            const addictionVal = document.getElementById('intro-addiction').value;
+            const genderVal = document.querySelector('input[name="gender"]:checked').value;
+
+            if (!dateVal) {
+                document.getElementById('intro-setup').classList.add('animate-pulse');
+                setTimeout(()=>document.getElementById('intro-setup').classList.remove('animate-pulse'), 500);
+                return;
+            }
+            
+            const ts = new Date(dateVal).getTime();
+            if (isNaN(ts) || ts > Date.now()) return alert('Дата должна быть в прошлом');
+
+            userData = {
+                startTimestamp: ts,
+                name: nameVal,
+                gender: genderVal,
+                addiction: addictionVal
+            };
+            
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(userData));
+            startTimer(ts);
+            enterApp();
+        });
+
+        document.getElementById('enter-app-btn').addEventListener('click', enterApp);
+
+        function startTimer(startTimestamp) {
+            if(countdownInterval) clearInterval(countdownInterval);
+            const update = () => {
+                const now = Date.now();
+                const diff = now - startTimestamp;
+                if(diff < 0) return; 
+                
+                const dateStart = new Date(startTimestamp);
+                const dateNow = new Date(now);
+
+                let years = dateNow.getFullYear() - dateStart.getFullYear();
+                let months = dateNow.getMonth() - dateStart.getMonth();
+                let days = dateNow.getDate() - dateStart.getDate();
+                if (days < 0) {
+                    months--;
+                    const prevMonth = new Date(dateNow.getFullYear(), dateNow.getMonth(), 0);
+                    days += prevMonth.getDate();
+                }
+                if (months < 0) {
+                    years--;
+                    months += 12;
+                }
+
+                // Total Days Calculation
+                const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+                document.getElementById('total-days').innerText = totalDays;
+
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('years').innerText = String(years).padStart(2,'0');
+                document.getElementById('months').innerText = String(months).padStart(2,'0');
+                document.getElementById('days').innerText = String(days).padStart(2,'0');
+                document.getElementById('hours').innerText = String(hours).padStart(2,'0');
+                document.getElementById('minutes').innerText = String(mins).padStart(2,'0');
+                document.getElementById('seconds').innerText = String(secs).padStart(2,'0');
+                
+                document.getElementById('years-label').innerText = getPlural(years, 'ГОД', 'ГОДА', 'ЛЕТ');
+                document.getElementById('months-label').innerText = getPlural(months, 'МЕСЯЦ', 'МЕСЯЦА', 'МЕСЯЦЕВ');
+                document.getElementById('days-label').innerText = getPlural(days, 'ДЕНЬ', 'ДНЯ', 'ДНЕЙ');
+            };
+            update();
+            countdownInterval = setInterval(update, 1000);
+        }
+
+        function getPlural(n, one, few, many) {
+            n = Math.abs(n) % 100;
+            const n1 = n % 10;
+            if (n > 10 && n < 20) return many;
+            if (n1 > 1 && n1 < 5) return few;
+            if (n1 === 1) return one;
+            return many;
+        }
+
+        // RESET
+        const resetBtn = document.getElementById('reset-btn');
+        const progressCircle = document.querySelector('.progress-ring__circle');
+        const circleLength = 175.9;
+        let pressTimer, isPressing = false;
+
+        function startPress() {
+            isPressing = true;
+            progressCircle.style.transition = 'stroke-dashoffset 1.5s linear';
+            progressCircle.style.strokeDashoffset = '0';
+            pressTimer = setTimeout(() => { if(isPressing) { showResetModal(); cancelPress(); }}, 1500);
+        }
+        function cancelPress() {
+            isPressing = false;
+            clearTimeout(pressTimer);
+            progressCircle.style.transition = 'stroke-dashoffset 0.2s linear';
+            progressCircle.style.strokeDashoffset = circleLength;
+        }
+        resetBtn.addEventListener('mousedown', startPress);
+        resetBtn.addEventListener('touchstart', (e) => { e.preventDefault(); startPress(); });
+        resetBtn.addEventListener('mouseup', cancelPress);
+        resetBtn.addEventListener('touchend', cancelPress);
+
+        // MODALS
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalContent = document.getElementById('modal-content');
+        function showResetModal() {
+            if(navigator.vibrate) navigator.vibrate(100);
+            modalOverlay.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                modalOverlay.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-90');
+                modalContent.classList.add('scale-100');
+            });
+        }
+        function hideResetModal() {
+            modalOverlay.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-90');
+            setTimeout(() => modalOverlay.classList.add('hidden'), 500);
+        }
+        document.getElementById('cancel-reset').addEventListener('click', hideResetModal);
+        document.getElementById('confirm-reset').addEventListener('click', () => {
+            localStorage.removeItem(STORAGE_KEY);
+            location.reload(); 
+        });
+
+        // SETTINGS
+        const settingsModal = document.getElementById('settings-modal');
+        document.getElementById('settings-btn').addEventListener('click', () => {
+            settingsModal.classList.remove('hidden');
+            document.getElementById('settings-name').value = userData.name || '';
+            document.getElementById('settings-addiction').value = userData.addiction || '';
+            if(userData.gender === 'f') document.getElementById('s-gender-f').checked = true;
+            else document.getElementById('s-gender-m').checked = true;
+
+            if(userData.startTimestamp) {
+                const date = new Date(parseInt(userData.startTimestamp));
+                const local = new Date(date.getTime() - date.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+                document.getElementById('settings-date-input').value = local;
+            }
+        });
+        document.getElementById('close-settings').addEventListener('click', () => settingsModal.classList.add('hidden'));
+        
+        document.getElementById('save-settings').addEventListener('click', () => {
+            const dateVal = document.getElementById('settings-date-input').value;
+            const nameVal = document.getElementById('settings-name').value;
+            const addVal = document.getElementById('settings-addiction').value;
+            const genderVal = document.querySelector('input[name="settings-gender"]:checked').value;
+
+            if(dateVal) {
+                userData.startTimestamp = new Date(dateVal).getTime();
+                userData.name = nameVal;
+                userData.addiction = addVal;
+                userData.gender = genderVal;
+                
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(userData));
+                
+                startTimer(userData.startTimestamp);
+                document.getElementById('display-addiction').innerText = userData.addiction ? `СВОБОДА ОТ: ${userData.addiction}` : "СВОБОДА";
+                
+                settingsModal.classList.add('hidden');
+            }
+        });
+
+        // 3D TILT
+        const grid = document.getElementById('countdown-grid');
+        const back = document.getElementById('digit-backdrop');
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 15;
+            const y = (e.clientY / window.innerHeight - 0.5) * 15;
+            grid.style.transform = `rotateX(${-y}deg) rotateY(${x}deg) translateZ(50px)`;
+            back.style.transform = `rotateX(${-y}deg) rotateY(${x}deg) translateZ(40px)`;
+        });
+
+        // QUOTES
+        const quoteEl = document.getElementById('quote-text');
+        function typeQuote(text) {
+            quoteEl.textContent = '';
+            let i = 0;
+            function next() {
+                if(i < text.length) {
+                    quoteEl.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(next, 50);
+                } else {
+                    setTimeout(startQuoteCycle, 8000);
+                }
+            }
+            next();
+        }
+        function startQuoteCycle() {
+            const gender = userData.gender || 'm';
+            const name = userData.name || (gender === 'f' ? 'Подруга' : 'Друг');
+            const pair = QUOTES_DATA[Math.floor(Math.random() * QUOTES_DATA.length)];
+            let txt = gender === 'f' ? pair.f : pair.m;
+            // Inject name
+            txt = txt.replace('{name}', name);
+            typeQuote(txt);
+        }
+
+        window.onload = initialize;
+    </script>
+</body>
+</html>
