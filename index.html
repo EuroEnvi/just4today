@@ -19,6 +19,7 @@
     <link rel="manifest" id="manifest" href="data:application/manifest+json;charset=utf-8;base64,eyJuYW1lIjoi0JjRgdGC0L7Rh9C90LjQuiIsInNob3J0X25hbWUiOiLQmNGB0YLQvtGH0L3QuNCqIiwiaWNvbnMiOlt7InNyYyI6Imljb25zL2ljb24tNDh4NDgucG5nIiwic2l6ZXMiOiI0OHg0OCIsInR5cGUiOiJpbWFnZS9wbmcifSx7InNyYyI6Imljb25zL2ljb24tNzJ4NzIucG5nIiwic2l6ZXMiOiI3Mng3MiIsInR5cGUiOiJpbWFnZS9wbmcifSx7InNyYyI6Imljb25zL2ljb24tOTZ4OTYucG5nIiwic2l6ZXMiOiI5Nng5NiIsInR5cGUiOiJpbWFnZS9wbmcifSx7InNyYyI6Imljb25zL2ljb24tMTI4eDEyOC5wbmciLCJzaXplcyI6IjEyOHgxMjgiLCJ0eXBlIjoiaW1hZ2UvcG5nIn0seyJzcmMiOiJpY29ucy9pY29uLTE0NHgxNDQucG5nIiwic2l6ZXMiOiIxNDR4MTQ0IiwidHlwZSI6ImltYWdlL3BuZyJ9LHsic3JjIjoiaWNvbnMvaWNvbi0xNTJ4MTUyLnBuZyIsInNpemVzIjoiMTUyeDE1MiIsInR5cGUiOiJpbWFnZS9wbmcifSx7InNyYyI6Imljb25zL2ljb24tMTkyeDE5Mi5wbmciLCJzaXplcyI6IjE5MngxOTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn0seyJzcmMiOiJpY29ucy9pY29uLTI1NngyNTYucG5nIiwic2l6ZXMiOiIyNTZ4MjU2IiwidHlwZSI6ImltYWdlL3BuZyJ9LHsic3JjIjoiaWNvbnMvaWNvbi0zODR4Mzg0LnBuZyIsInNpemVzIjoiMzg0eDM4NCIsInR5cGUiOiJpbWFnZS9wbmcifSx7InNyYyI6Imljb25zL2ljb24tNTEyeDUxMi5wbmciLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn1dLCJzdGFydF91cmwiOiIuIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiI2ZmZmZmZiIsInRoZW1lX2NvbG9yIjoiIzAwMDAwMCJ9">
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="groups_db.js"></script> 
 
     <style>
         html, body {
@@ -597,18 +598,6 @@
             { m: "Держись курса, брат.", f: "Держись курса, сестра." },
             { m: "Ты достоин лучшей жизни.", f: "Ты достойна лучшей жизни." },
             { m: "Ты вернул себе свою жизнь.", f: "Ты вернула себе свою жизнь." }
-        ];
-
-        // MOCK DATABASE FOR GROUPS
-        const GROUPS_DB = [
-            { city: "Москва", type: "AA", address: "ул. Тверская, 12, стр. 8", time: "19:00, 20:30", contact: "+74951234567", displayContact: "+7 (495) 123-45-67" },
-            { city: "Москва", type: "AA", address: "Ленинский пр-т, 34", time: "18:00 Ежедневно", contact: "+79990000000", displayContact: "+7 (999) 000-00-00" },
-            { city: "Москва", type: "NA", address: "ул. Сретенка, 9", time: "20:00 Вт, Чт, Сб", contact: "+79991112233", displayContact: "+7 (999) 111-22-33" },
-            { city: "Санкт-Петербург", type: "AA", address: "Невский пр., 88", time: "19:00 Пн, Ср, Пт", contact: "+78125555555", displayContact: "+7 (812) 555-55-55" },
-            { city: "Санкт-Петербург", type: "NA", address: "Лиговский пр., 50", time: "20:00 Ежедневно", contact: "+78123332211", displayContact: "+7 (812) 333-22-11" },
-            { city: "Екатеринбург", type: "AA", address: "ул. Ленина, 5", time: "19:00", contact: "+73430000000", displayContact: "+7 (343) 000-00-00" },
-            { city: "Онлайн", type: "AA", address: "Zoom", time: "21:00 (МСК)", contact: "https://aa-online.ru", displayContact: "aa-online.ru" },
-            { city: "Онлайн", type: "NA", address: "Skype", time: "20:00 (МСК)", contact: "https://na-russia.org", displayContact: "na-russia.org" }
         ];
 
         // State
