@@ -319,7 +319,6 @@
                         </div>
                     </div>
                     
-                    <!-- CORRECTED: Radio buttons for Addiction -->
                     <div class="mb-4">
                         <label class="form-label mb-2">Мой путь</label>
                         <div class="flex justify-center custom-radio">
@@ -413,7 +412,7 @@
             </div>
 
             <!-- BUTTONS CONTAINER -->
-            <div class="absolute bottom-8 w-full flex justify-center items-center gap-8 z-50 pointer-events-auto">
+            <div class="absolute bottom-16 w-full flex justify-center items-center gap-8 z-50 pointer-events-auto">
                 <!-- Settings Button -->
                 <button id="settings-btn" class="control-btn hover:bg-white/40 active:scale-95" title="Настройки">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -551,7 +550,6 @@
 
     <script>
         // --- CLOUD ENGINE ---
-        // ВАЖНО: Замените на свои файлы в папке img/
         const CLOUD_IMAGES = ['img/cloud-01.png', 'img/cloud-02.png', 'img/cloud-03.png', 'img/cloud-04.png'];
         const TUNNEL = document.getElementById('cloud-tunnel');
         const CLOUD_COUNT = 15;
@@ -599,6 +597,7 @@
             { m: "Ты достоин лучшей жизни.", f: "Ты достойна лучшей жизни." },
             { m: "Ты вернул себе свою жизнь.", f: "Ты вернула себе свою жизнь." }
         ];
+
 
         // State
         let userData = {
@@ -669,21 +668,23 @@
             }
             document.getElementById('status-text').innerText = `${name}, ты ${state}`;
             
-            // Update total days label dynamically
             daysLabel = userData.addiction === 'clean' ? "Всего дней в чистоте" : "Всего дней в трезвости";
             document.getElementById('total-days-label').innerText = daysLabel;
         }
 
         // SAVE & START
         document.getElementById('start-journey-btn').addEventListener('click', () => {
-            const dateVal = document.getElementById('intro-date-input').value;
-            const nameVal = document.getElementById('intro-name').value;
+            const dateInput = document.getElementById('intro-date-input');
+            const nameInput = document.getElementById('intro-name');
             // FIXED SAFE CHECK: Handle possible null if for some reason nothing is checked (though HTML defaults it)
             const addRadio = document.querySelector('input[name="addiction"]:checked');
             const addictionVal = addRadio ? addRadio.value : 'sober';
             
             const genRadio = document.querySelector('input[name="gender"]:checked');
             const genderVal = genRadio ? genRadio.value : 'm';
+
+            const dateVal = dateInput ? dateInput.value : '';
+            const nameVal = nameInput ? nameInput.value : '';
 
             if (!dateVal) {
                 document.getElementById('intro-setup').classList.add('animate-pulse');
@@ -830,14 +831,14 @@
         document.getElementById('close-settings').addEventListener('click', () => settingsModal.classList.add('hidden'));
         
         document.getElementById('save-settings').addEventListener('click', () => {
-            const dateVal = document.getElementById('settings-date-input').value;
-            const nameVal = document.getElementById('settings-name').value;
+            const dateInput = document.getElementById('settings-date-input');
+            const nameInput = document.getElementById('settings-name');
             const addVal = document.querySelector('input[name="settings-addiction"]:checked')?.value || 'sober';
             const genderVal = document.querySelector('input[name="settings-gender"]:checked')?.value || 'm';
 
-            if(dateVal) {
-                userData.startTimestamp = new Date(dateVal).getTime();
-                userData.name = nameVal;
+            if(dateInput && dateInput.value) {
+                userData.startTimestamp = new Date(dateInput.value).getTime();
+                userData.name = nameInput ? nameInput.value : '';
                 userData.addiction = addVal;
                 userData.gender = genderVal;
                 
@@ -845,7 +846,6 @@
                 
                 startTimer(userData.startTimestamp);
                 updateStatusText();
-                document.getElementById('display-addiction').innerText = userData.addiction === 'clean' ? "ЧИСТОТА" : "ТРЕЗВОСТЬ";
                 
                 settingsModal.classList.add('hidden');
             }
@@ -863,8 +863,11 @@
         document.getElementById('close-info').addEventListener('click', () => infoModal.classList.add('hidden'));
 
         function renderGroups() {
-            const filterType = document.querySelector('input[name="group-type"]:checked').value;
-            const filterCity = cityInput.value.toLowerCase();
+            const typeRadio = document.querySelector('input[name="group-type"]:checked');
+            const filterType = typeRadio ? typeRadio.value : 'AA';
+            
+            const cityEl = document.getElementById('city-search');
+            const filterCity = cityEl ? cityEl.value.toLowerCase() : '';
             
             const filtered = GROUPS_DB.filter(g => 
                 g.type === filterType && 
@@ -884,11 +887,15 @@
                 const isOnline = g.city === "Онлайн";
                 const mapLink = isOnline ? '#' : `https://yandex.ru/maps/?text=${encodeURIComponent(g.city + ' ' + g.address)}`;
                 const contactLink = isOnline ? g.contact : `tel:${g.contact}`;
-                
+                const communityName = g.communityName || ''; // Use community name if available
+
                 item.innerHTML = `
                     <div class="flex justify-between items-center mb-1">
-                        <span class="font-bold text-blue-900 text-sm">${g.city}</span>
-                        <span class="text-[10px] bg-blue-900 text-white px-2 py-0.5 rounded-full">${g.type}</span>
+                        <div>
+                            <span class="font-bold text-blue-900 text-sm">${g.city}</span>
+                            ${communityName ? `<br><span class="text-xs text-blue-900/70 font-semibold">"${communityName}"</span>` : ''}
+                        </div>
+                        <span class="text-[10px] bg-blue-900 text-white px-2 py-0.5 rounded-full self-start">${g.type}</span>
                     </div>
                     
                     <a href="${mapLink}" ${!isOnline ? 'target="_blank"' : ''} class="text-xs text-blue-900/80 font-semibold mb-1 block hover:underline flex items-center gap-1">
