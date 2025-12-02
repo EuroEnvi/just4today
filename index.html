@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ИСТОЧНИК СВЕТА</title>
+    <title>Источник</title>
     
     <!-- PWA Settings -->
     <meta name="theme-color" content="#1e3c72">
@@ -16,7 +16,8 @@
     <link rel="icon" type="image/png" href="icons/favicon.png">
     
     <!-- Manifest -->
-    <link rel="manifest" id="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoi0JjRgdGC0L7Rh9C90LjQuiDQodCy0LXRgtCwIiwic2hvcnRfbmFtZSI6ItCY0YHRgtC+0YfQvdC40poiLCJzdGFydF91cmwiOiIuIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzFlM2M3MiIsInRoZW1lX2NvbG9yIjoiIzRDQTFBRiIsImljb25zIjpbeyJzcmMiOiJpY29ucy9pY29uLTQ4eDQ4LnBuZyIsInNpemVzIjoiNDh4NDgiLCJ0eXBlIjoiaW1hZ2UvcG5nIn0seyJzcmMiOiJpY29ucy9pY29uLTcyeDcyLnBuZyIsInNpemVzIjoiNzJ4NzIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn0seyJzcmMiOiJpY29ucy9pY29uLTk2eTk2LnBuZyIsInNpemVzIjoiOTZ4OTYiLCJ0eXBlIjoiaW1hZ2UvcG5nIn0seyJzcmMiOiJpY29ucy9pY29uLTEyOHgxMjgucG5nIiwic2l6ZXMiOiIxMjh4MTI4IiwidHlwZSI6ImltYWdlL3BuZyJ9LHsic3JjIjoiaWNvbnMvaWNvbi0xNDR4MTQ0LnBuZyIsInNpemVzIjoiMTQ0eDE0NCIsInR5cGUiOiJpbWFnZS9wbmcifSx7InNyYyI6Imljb25zL2ljb24tMTUyeDE1Mi5wbmciLCJzaXplcyI6IjE1MngxNTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn0seyJzcmMiOiJpY29ucy9pY29uLTE5MngxOTIucG5nIiwic2l6ZXMiOiIxOTJ4MTkyIiwidHlwZSI6ImltYWdlL3BuZyJ9LHsic3JjIjoiaWNvbnMvaWNvbi0yNTZ4MjU2LnBuZyIsInNpemVzIjoiMjU2eDI1NiIsInR5cGUiOiJpbWFnZS9wbmcifSx7InNyYyI6Imljb25zL2ljb24tMzg0eDM4NC5wbmciLCJzaXplcyI6IjM4NHgzODQiLCJ0eXBlIjoiaW1hZ2UvcG5nIn0seyJzcmMiOiJpY29ucy9pY29uLTUxMng1MTIucG5nIiwic2l6ZXMiOiI1MTJ4NTEyIiwidHlwZSI6ImltYWdlL3BuZyJ9XX0=">
+    <link rel="manifest" id="manifest" href="data:application/manifest+json;charset=utf-8;base64,eyJuYW1lIjoi0JjRgdGC0L7Rh9C90LjQuiIsInNob3J0X25hbWUiOiLQmNGB0YLQvtGH0L3QuNCqIiwiaWNvbnMiOlt7InNyYyI6Imljb25zL2ljb24tNDh4NDgucG5nIiwic2l6ZXMiOiI0OHg0OCIsInR5cGUiOiJpbWFnZS9wbmcifSx7InNyYyI6Imljb25zL2ljb24tNzJ4NzIucG5nIiwic2l6ZXMiOiI3Mng3MiIsInR5cGUiOiJpbWFnZS9wbmcifSx7InNyYyI6Imljb25zL2ljb24tOTZ4OTYucG5nIiwic2l6ZXMiOiI5Nng5NiIsInR5cGUiOiJpbWFnZS9wbmcifSx7InNyYyI6Imljb25zL2ljb24tMTI4eDEyOC5wbmciLCJzaXplcyI6IjEyOHgxMjgiLCJ0eXBlIjoiaW1hZ2UvcG5nIn0seyJzcmMiOiJpY29ucy9pY29uLTE0NHgxNDQucG5nIiwic2l6ZXMiOiIxNDR4MTQ0IiwidHlwZSI6ImltYWdlL3BuZyJ9LHsic3JjIjoiaWNvbnMvaWNvbi0xNTJ4MTUyLnBuZyIsInNpemVzIjoiMTUyeDE1MiIsInR5cGUiOiJpbWFnZS9wbmcifSx7InNyYyI6Imljb25zL2ljb24tMTkyeDE5Mi5wbmciLCJzaXplcyI6IjE5MngxOTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn0seyJzcmMiOiJpY29ucy9pY29uLTI1NngyNTYucG5nIiwic2l6ZXMiOiIyNTZ4MjU2IiwidHlwZSI6ImltYWdlL3BuZyJ9LHsic3JjIjoiaWNvbnMvaWNvbi0zODR4Mzg0LnBuZyIsInNpemVzIjoiMzg0eDM4NCIsInR5cGUiOiJpbWFnZS9wbmcifSx7InNyYyI6Imljb25zL2ljb24tNTEyeDUxMi5wbmciLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn1dLCJzdGFydF91cmwiOiIuIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiI2ZmZmZmZiIsInRoZW1lX2NvbG9yIjoiIzAwMDAwMCJ9">
+    
     <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
@@ -34,10 +35,20 @@
             inset: 0;
         }
 
+        /* Interaction Fixes */
+        input, textarea, select {
+            -webkit-user-select: text !important;
+            user-select: text !important;
+            pointer-events: auto !important;
+        }
+        button, label, a {
+            pointer-events: auto !important;
+            cursor: pointer !important;
+        }
+
         .font-serif-elegant { font-family: 'Georgia', serif; }
         .font-monospace-digital { font-family: 'Courier New', monospace; }
         
-        /* --- CLOUD ENGINE CSS --- */
         #cloud-tunnel {
             position: absolute;
             inset: 0;
@@ -46,7 +57,8 @@
             perspective: 800px;
             overflow: hidden;
             z-index: 0;
-            animation: cameraRoll 20s ease-in-out infinite alternate;
+            animation: cameraRoll 60s ease-in-out infinite alternate;
+            pointer-events: none;
         }
 
         .cloud-layer {
@@ -88,6 +100,7 @@
             position: relative;
             z-index: 10;
             overflow: hidden;
+            pointer-events: none;
         }
 
         /* GLASS EFFECTS */
@@ -97,6 +110,15 @@
             background-color: rgba(255, 255, 255, 0.15);
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.3);
+            pointer-events: auto;
+        }
+
+        .holographic-glass-darker {
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            background-color: rgba(30, 58, 138, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         /* LAYERS */
@@ -110,24 +132,26 @@
             align-items: center;
             justify-content: center;
             transition: all 1.5s cubic-bezier(0.22, 1, 0.36, 1);
-            z-index: 20;
         }
 
         #intro-layer {
             opacity: 1;
             transform: scale(1) translateZ(0);
+            z-index: 50; 
             pointer-events: auto;
             background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(25, 50, 100, 0.3) 100%);
         }
         #intro-layer.dissolved {
             opacity: 0;
             transform: scale(1.5) translateZ(-500px);
-            pointer-events: none;
+            pointer-events: none !important;
+            z-index: -1;
         }
 
         #app-layer {
             opacity: 0;
             transform: scale(0.8) translateZ(-100px);
+            z-index: 40;
             pointer-events: none;
         }
         #app-layer.active {
@@ -141,18 +165,11 @@
             color: #ffffff;
             text-shadow: 0 4px 15px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5);
         }
-        
         .readable-text {
             color: #1e3a8a;
             text-shadow: 0 1px 1px rgba(255,255,255,0.8);
             font-weight: 700;
         }
-        
-        .readable-white {
-            color: #ffffff;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
-        }
-
         .digital-value { font-weight: 900; }
 
         /* CONTROLS */
@@ -169,8 +186,8 @@
         .cinematic-button:active { transform: scale(0.95); }
 
         .control-btn {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             border: 1px solid rgba(255, 255, 255, 0.5);
             background: rgba(255, 255, 255, 0.2);
@@ -182,7 +199,6 @@
             transition: all 0.3s;
             position: relative;
             overflow: hidden;
-            cursor: pointer;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
         
@@ -204,7 +220,8 @@
             width: 100%;
             display: flex;
             justify-content: center;
-            animation: levitate 8s ease-in-out infinite; 
+            animation: levitate 12s ease-in-out infinite; 
+            pointer-events: none;
         }
 
         #digit-backdrop {
@@ -220,8 +237,7 @@
         }
 
         #countdown-grid {
-            transform-style: preserve-3d;
-            transition: transform 0.2s ease-out;
+            pointer-events: none; 
         }
 
         /* FORMS */
@@ -248,8 +264,8 @@
             text-shadow: 0 1px 0 rgba(255,255,255,0.5);
         }
         
-        .gender-radio input { display: none; }
-        .gender-radio label {
+        .custom-radio input { display: none; }
+        .custom-radio label {
             display: inline-block;
             padding: 0.5rem 1rem;
             background: rgba(255,255,255,0.2);
@@ -259,13 +275,15 @@
             cursor: pointer;
             border: 1px solid rgba(30, 58, 138, 0.3);
             transition: all 0.3s;
+            flex: 1;
+            text-align: center;
         }
-        .gender-radio input:checked + label {
+        .custom-radio input:checked + label {
             background: #1e3a8a;
             color: white;
         }
-        .gender-radio label:first-of-type { border-radius: 0.5rem 0 0 0.5rem; }
-        .gender-radio label:last-of-type { border-radius: 0 0.5rem 0.5rem 0; border-left: none; }
+        .custom-radio label:first-of-type { border-radius: 0.5rem 0 0 0.5rem; }
+        .custom-radio label:last-of-type { border-radius: 0 0.5rem 0.5rem 0; border-left: none; }
 
     </style>
 </head>
@@ -288,21 +306,33 @@
                     </div>
                     <div class="mb-4 text-center">
                         <label class="form-label mb-2">Пол</label>
-                        <div class="flex justify-center gender-radio">
-                            <div>
+                        <div class="flex justify-center custom-radio">
+                            <div class="flex-1 flex">
                                 <input type="radio" name="gender" id="gender-m" value="m" checked>
                                 <label for="gender-m">Муж</label>
                             </div>
-                            <div>
+                            <div class="flex-1 flex">
                                 <input type="radio" name="gender" id="gender-f" value="f">
                                 <label for="gender-f">Жен</label>
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- CORRECTED: Radio buttons for Addiction -->
                     <div class="mb-4">
-                        <label class="form-label">От чего освобождаемся?</label>
-                        <input type="text" id="intro-addiction" class="form-input text-center text-xs" placeholder="Например: алкоголь, курение...">
+                        <label class="form-label mb-2">Мой путь</label>
+                        <div class="flex justify-center custom-radio">
+                            <div class="flex-1 flex">
+                                <input type="radio" name="addiction" id="addiction-sober" value="sober" checked>
+                                <label for="addiction-sober">Трезвость</label>
+                            </div>
+                            <div class="flex-1 flex">
+                                <input type="radio" name="addiction" id="addiction-clean" value="clean">
+                                <label for="addiction-clean">Чистота</label>
+                            </div>
+                        </div>
                     </div>
+
                     <div>
                         <label class="form-label">Дата начала пути</label>
                         <input type="datetime-local" id="intro-date-input" class="form-input text-center font-monospace-digital">
@@ -329,7 +359,13 @@
         <!-- APP LAYER -->
         <div id="app-layer" class="layer">
             
-            <!-- MAIN COUNTER SECTION -->
+            <!-- STATUS TEXT (Top Centered) -->
+            <div class="absolute top-12 left-0 w-full text-center z-50 pointer-events-none">
+                <h2 id="status-text" class="text-xl md:text-2xl font-serif-elegant font-bold text-white text-glow drop-shadow-md tracking-wide">
+                    <!-- Text injected by JS -->
+                </h2>
+            </div>
+
             <div id="floating-wrapper" class="max-w-5xl h-[60vh] mt-[-5vh] items-center">
                 <!-- Backdrop -->
                 <div id="digit-backdrop" class="holographic-glass shadow-2xl"></div>
@@ -360,52 +396,62 @@
                         <div class="flex flex-col items-center"><span id="seconds">00</span></div>
                     </div>
 
-                    <!-- TOTAL DAYS (Cleaner Look) -->
+                    <!-- TOTAL DAYS COUNTER -->
                     <div class="mt-8 w-full flex justify-center">
-                        <div class="flex flex-col items-center justify-center">
-                            <span class="text-[10px] md:text-xs uppercase tracking-[0.3em] text-white/90 font-bold mb-2 shadow-sm">Всего дней в чистоте</span>
-                            <span id="total-days" class="text-5xl md:text-6xl font-monospace-digital font-bold text-white text-glow leading-none filter drop-shadow-xl">0</span>
+                        <div class="flex flex-col items-center justify-center px-10 py-4 rounded-xl holographic-glass-darker border border-white/20">
+                            <span id="total-days-label" class="text-[10px] md:text-xs uppercase tracking-[0.3em] text-white/70 font-bold mb-1">Всего дней в чистоте</span>
+                            <span id="total-days" class="text-4xl md:text-5xl font-monospace-digital font-bold text-white text-glow leading-none mt-1">0</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- PERSONALIZED QUOTES -->
+            <!-- QUOTES (Bottom) -->
             <div id="quote-container" class="mt-4 h-24 w-11/12 max-w-xl text-center flex items-center justify-center relative z-20">
                 <p id="quote-text" class="text-sm md:text-lg italic text-blue-900 font-serif-elegant leading-relaxed font-bold" style="text-shadow: 0 1px 1px rgba(255,255,255,0.8);"></p>
             </div>
 
-            <!-- BUTTONS AND BADGE CONTAINER -->
-            <div class="absolute bottom-6 w-full flex flex-col items-center z-50 pointer-events-auto gap-6">
-                <!-- Action Buttons -->
-                <div class="flex gap-12">
-                    <button id="settings-btn" class="control-btn hover:bg-white/40 active:scale-95">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.52a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
-                            <circle cx="12" cy="12" r="3"></circle>
-                        </svg>
-                    </button>
+            <!-- BUTTONS CONTAINER -->
+            <div class="absolute bottom-8 w-full flex justify-center items-center gap-8 z-50 pointer-events-auto">
+                <!-- Settings Button -->
+                <button id="settings-btn" class="control-btn hover:bg-white/40 active:scale-95" title="Настройки">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.52a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </button>
 
-                    <button id="reset-btn" class="control-btn hover:bg-red-100 hover:border-red-400/50 text-blue-900 hover:text-red-600 active:scale-95">
-                        <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 60 60">
-                            <circle class="progress-ring__circle" stroke="#ef4444" stroke-width="3" fill="transparent" r="28" cx="30" cy="30" stroke-dasharray="175.9" stroke-dashoffset="175.9"></circle>
-                        </svg>
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
-                            <path d="M3 3v5h5"></path>
-                        </svg>
-                    </button>
-                </div>
+                <!-- INFO Button (Groups) -->
+                <button id="info-btn" class="control-btn hover:bg-white/40 active:scale-95" title="Поиск групп">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 16v-4"></path>
+                        <path d="M12 8h.01"></path>
+                    </svg>
+                </button>
 
-                <!-- ADDICTION BADGE (Bottom) -->
-                <div class="px-6 py-2 rounded-full holographic-glass border-white/20 bg-white/10 backdrop-blur-sm">
-                    <span class="text-[10px] uppercase tracking-widest font-bold text-blue-900 opacity-80" id="display-addiction">СВОБОДА</span>
+                <!-- Reset Button -->
+                <button id="reset-btn" class="control-btn hover:bg-red-100 hover:border-red-400/50 text-blue-900 hover:text-red-600 active:scale-95" title="Сброс (удерживайте)">
+                    <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 60 60">
+                        <circle class="progress-ring__circle" stroke="#ef4444" stroke-width="3" fill="transparent" r="28" cx="30" cy="30" stroke-dasharray="175.9" stroke-dashoffset="175.9"></circle>
+                    </svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                        <path d="M3 3v5h5"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- ADDICTION BADGE (Very Bottom) -->
+            <div class="absolute bottom-1 w-full text-center z-40 pointer-events-none">
+                <div class="inline-block px-4 py-1 rounded-full holographic-glass border-none bg-white/20">
+                    <span id="display-addiction" class="text-[9px] uppercase tracking-widest font-bold text-blue-900 opacity-70">СВОБОДА</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- MODALS -->
+    <!-- MODAL: RESET -->
     <div id="modal-overlay" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-6 opacity-0 transition-opacity duration-500">
         <div id="modal-content" class="holographic-glass p-8 rounded-3xl max-w-sm w-full text-center transform scale-90 transition-transform duration-500 border border-white/50 bg-white/40">
             <h3 class="text-2xl font-serif-elegant text-blue-900 mb-4 font-bold">Всё в порядке</h3>
@@ -421,6 +467,7 @@
         </div>
     </div>
 
+    <!-- MODAL: SETTINGS -->
     <div id="settings-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-6 backdrop-blur-md bg-white/30 transition-opacity duration-300">
         <div class="holographic-glass p-6 rounded-3xl max-w-sm w-full relative border border-white/50 bg-white/60 overflow-y-auto max-h-[90vh]">
             <h3 class="text-xl font-serif-elegant text-blue-900 mb-6 text-center font-bold">Настройки</h3>
@@ -433,12 +480,12 @@
                 
                 <div>
                     <label class="form-label">Пол</label>
-                    <div class="flex gender-radio">
-                        <div>
+                    <div class="flex gender-radio custom-radio">
+                        <div class="flex-1 flex">
                             <input type="radio" name="settings-gender" id="s-gender-m" value="m">
                             <label for="s-gender-m" class="w-full text-center">Муж</label>
                         </div>
-                        <div>
+                        <div class="flex-1 flex">
                             <input type="radio" name="settings-gender" id="s-gender-f" value="f">
                             <label for="s-gender-f" class="w-full text-center">Жен</label>
                         </div>
@@ -446,8 +493,17 @@
                 </div>
 
                 <div>
-                    <label class="form-label">Цель (от чего)</label>
-                    <input type="text" id="settings-addiction" class="form-input">
+                    <label class="form-label">Мой путь</label>
+                    <div class="flex gender-radio custom-radio">
+                        <div class="flex-1 flex">
+                            <input type="radio" name="settings-addiction" id="s-addiction-sober" value="sober">
+                            <label for="s-addiction-sober">Трезвость</label>
+                        </div>
+                        <div class="flex-1 flex">
+                            <input type="radio" name="settings-addiction" id="s-addiction-clean" value="clean">
+                            <label for="s-addiction-clean">Чистота</label>
+                        </div>
+                    </div>
                 </div>
 
                 <div>
@@ -461,8 +517,40 @@
         </div>
     </div>
 
+    <!-- MODAL: INFO (GROUPS) -->
+    <div id="info-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4 backdrop-blur-md bg-white/30 transition-opacity duration-300">
+        <div class="holographic-glass p-6 rounded-3xl max-w-sm w-full relative border border-white/50 bg-white/70 overflow-hidden flex flex-col max-h-[85vh]">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-serif-elegant text-blue-900 font-bold">Группы</h3>
+                <button id="close-info" class="text-blue-900/50 hover:text-blue-900 p-1 font-bold text-xl">✕</button>
+            </div>
+
+            <!-- Filters -->
+            <div class="space-y-4 mb-4 flex-shrink-0">
+                <input type="text" id="city-search" placeholder="Поиск города..." class="form-input text-center text-sm" style="background: rgba(255,255,255,0.5);">
+                
+                <div class="flex custom-radio">
+                    <div class="flex-1 flex">
+                        <input type="radio" name="group-type" id="type-aa" value="AA" checked>
+                        <label for="type-aa">АА (Алкоголь)</label>
+                    </div>
+                    <div class="flex-1 flex">
+                        <input type="radio" name="group-type" id="type-na" value="NA">
+                        <label for="type-na">АН (Вещества)</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- List -->
+            <div id="groups-list" class="overflow-y-auto space-y-3 flex-1 pr-1 custom-scrollbar">
+                <!-- Items will be injected here -->
+            </div>
+        </div>
+    </div>
+
     <script>
         // --- CLOUD ENGINE ---
+        // ВАЖНО: Замените на свои файлы в папке img/
         const CLOUD_IMAGES = ['img/cloud-01.png', 'img/cloud-02.png', 'img/cloud-03.png', 'img/cloud-04.png'];
         const TUNNEL = document.getElementById('cloud-tunnel');
         const CLOUD_COUNT = 15;
@@ -477,6 +565,7 @@
             el.className = 'cloud-layer';
             const img = document.createElement('img');
             img.src = CLOUD_IMAGES[Math.floor(Math.random() * CLOUD_IMAGES.length)];
+            // Fallback
             img.onerror = () => { img.src = 'https://assets.codepen.io/1233608/cloud-01.png'; };
             el.appendChild(img);
 
@@ -496,28 +585,30 @@
         // --- DATA & LOGIC ---
         const STORAGE_KEY = 'sobriety_data_v2';
         
-        // Use placeholder {name} for dynamic insertion
+        // Quotes WITHOUT names
         const QUOTES_DATA = [
-            { m: "{name}, каждый день — твоя победа.", f: "{name}, каждый день — твоя победа." },
-            { m: "{name}, ты кузнец своего счастья.", f: "{name}, ты творец своего счастья." },
-            { m: "{name}, иди вперед, не оборачивайся.", f: "{name}, иди вперед, не оборачивайся." },
-            { m: "{name}, твоя воля — твой меч.", f: "{name}, твоя воля — твой щит." },
-            { m: "{name}, я в тебя верю.", f: "{name}, я в тебя верю." },
-            { m: "{name}, будь стойким перед лицом бури.", f: "{name}, будь сильной перед лицом бури." },
-            { m: "{name}, свобода — это твой выбор.", f: "{name}, свобода — это твой выбор." },
-            { m: "{name}, ты — капитан своей души.", f: "{name}, ты — хозяйка своей души." },
-            { m: "{name}, свет внутри тебя разгонит тьму.", f: "{name}, свет внутри тебя разгонит тьму." },
-            { m: "{name}, ты не один на этом пути.", f: "{name}, ты не одна на этом пути." },
-            { m: "{name}, твое прошлое не определяет тебя.", f: "{name}, твое прошлое не определяет тебя." },
-            { m: "{name}, сегодня ты стал лучше, чем вчера.", f: "{name}, сегодня ты стала лучше, чем вчера." },
-            { m: "{name}, держись курса.", f: "{name}, держись курса." },
-            { m: "{name}, почувствуй силу в своих руках.", f: "{name}, почувствуй силу в своем сердце." },
-            { m: "{name}, ты достоин лучшей жизни.", f: "{name}, ты достойна лучшей жизни." },
-            { m: "{name}, путь к вершине начинается с шага.", f: "{name}, путь к вершине начинается с шага." },
-            { m: "{name}, ты вернул себе свою жизнь.", f: "{name}, ты вернула себе свою жизнь." },
-            { m: "{name}, гордись тем, кто ты есть.", f: "{name}, гордись тем, кто ты есть." },
-            { m: "{name}, не сдавайся, ты уже близко.", f: "{name}, не сдавайся, ты уже близко." },
-            { m: "{name}, этот мир нуждается в тебе здоровом.", f: "{name}, этот мир нуждается в тебе здоровой." }
+            { m: "Каждый день — твоя победа.", f: "Каждый день — твоя победа." },
+            { m: "Ты кузнец своего счастья.", f: "Ты творец своего счастья." },
+            { m: "Иди вперед, не оборачивайся.", f: "Иди вперед, не оборачивайся." },
+            { m: "Твоя воля — твой меч.", f: "Твоя воля — твой щит." },
+            { m: "Свет внутри тебя разгонит тьму.", f: "Свет внутри тебя разгонит тьму." },
+            { m: "Ты не один на этом пути.", f: "Ты не одна на этом пути." },
+            { m: "Сегодня ты стал лучше, чем вчера.", f: "Сегодня ты стала лучше, чем вчера." },
+            { m: "Держись курса, брат.", f: "Держись курса, сестра." },
+            { m: "Ты достоин лучшей жизни.", f: "Ты достойна лучшей жизни." },
+            { m: "Ты вернул себе свою жизнь.", f: "Ты вернула себе свою жизнь." }
+        ];
+
+        // MOCK DATABASE FOR GROUPS
+        const GROUPS_DB = [
+            { city: "Москва", type: "AA", address: "ул. Тверская, 12, стр. 8", time: "19:00, 20:30", contact: "+74951234567", displayContact: "+7 (495) 123-45-67" },
+            { city: "Москва", type: "AA", address: "Ленинский пр-т, 34", time: "18:00 Ежедневно", contact: "+79990000000", displayContact: "+7 (999) 000-00-00" },
+            { city: "Москва", type: "NA", address: "ул. Сретенка, 9", time: "20:00 Вт, Чт, Сб", contact: "+79991112233", displayContact: "+7 (999) 111-22-33" },
+            { city: "Санкт-Петербург", type: "AA", address: "Невский пр., 88", time: "19:00 Пн, Ср, Пт", contact: "+78125555555", displayContact: "+7 (812) 555-55-55" },
+            { city: "Санкт-Петербург", type: "NA", address: "Лиговский пр., 50", time: "20:00 Ежедневно", contact: "+78123332211", displayContact: "+7 (812) 333-22-11" },
+            { city: "Екатеринбург", type: "AA", address: "ул. Ленина, 5", time: "19:00", contact: "+73430000000", displayContact: "+7 (343) 000-00-00" },
+            { city: "Онлайн", type: "AA", address: "Zoom", time: "21:00 (МСК)", contact: "https://aa-online.ru", displayContact: "aa-online.ru" },
+            { city: "Онлайн", type: "NA", address: "Skype", time: "20:00 (МСК)", contact: "https://na-russia.org", displayContact: "na-russia.org" }
         ];
 
         // State
@@ -525,7 +616,7 @@
             startTimestamp: null,
             name: '',
             gender: 'm',
-            addiction: ''
+            addiction: 'sober' // 'sober' or 'clean'
         };
 
         const introLayer = document.getElementById('intro-layer');
@@ -566,7 +657,8 @@
         function enterApp() {
             if(navigator.vibrate) navigator.vibrate(50);
             
-            document.getElementById('display-addiction').innerText = userData.addiction ? `СВОБОДА ОТ: ${userData.addiction}` : "СВОБОДА";
+            updateStatusText();
+            document.getElementById('display-addiction').innerText = userData.addiction === 'clean' ? "ЧИСТОТА" : "ТРЕЗВОСТЬ";
 
             introLayer.classList.add('dissolved');
             setTimeout(() => {
@@ -576,12 +668,33 @@
             }, 800);
         }
 
-        // SAVE & START (First Time)
+        function updateStatusText() {
+            const name = userData.name || (userData.gender === 'f' ? "Подруга" : "Друг");
+            let state = "";
+            let daysLabel = "";
+            
+            if (userData.gender === 'f') {
+                state = userData.addiction === 'clean' ? "чистая" : "трезвая";
+            } else {
+                state = userData.addiction === 'clean' ? "чистый" : "трезвый";
+            }
+            document.getElementById('status-text').innerText = `${name}, ты ${state}`;
+            
+            // Update total days label dynamically
+            daysLabel = userData.addiction === 'clean' ? "Всего дней в чистоте" : "Всего дней в трезвости";
+            document.getElementById('total-days-label').innerText = daysLabel;
+        }
+
+        // SAVE & START
         document.getElementById('start-journey-btn').addEventListener('click', () => {
             const dateVal = document.getElementById('intro-date-input').value;
             const nameVal = document.getElementById('intro-name').value;
-            const addictionVal = document.getElementById('intro-addiction').value;
-            const genderVal = document.querySelector('input[name="gender"]:checked').value;
+            // FIXED SAFE CHECK: Handle possible null if for some reason nothing is checked (though HTML defaults it)
+            const addRadio = document.querySelector('input[name="addiction"]:checked');
+            const addictionVal = addRadio ? addRadio.value : 'sober';
+            
+            const genRadio = document.querySelector('input[name="gender"]:checked');
+            const genderVal = genRadio ? genRadio.value : 'm';
 
             if (!dateVal) {
                 document.getElementById('intro-setup').classList.add('animate-pulse');
@@ -629,7 +742,6 @@
                     months += 12;
                 }
 
-                // Total Days Calculation
                 const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
                 document.getElementById('total-days').innerText = totalDays;
 
@@ -661,7 +773,7 @@
             return many;
         }
 
-        // RESET
+        // RESET LOGIC
         const resetBtn = document.getElementById('reset-btn');
         const progressCircle = document.querySelector('.progress-ring__circle');
         const circleLength = 175.9;
@@ -684,7 +796,7 @@
         resetBtn.addEventListener('mouseup', cancelPress);
         resetBtn.addEventListener('touchend', cancelPress);
 
-        // MODALS
+        // MODALS SHOW/HIDE
         const modalOverlay = document.getElementById('modal-overlay');
         const modalContent = document.getElementById('modal-content');
         function showResetModal() {
@@ -713,7 +825,10 @@
         document.getElementById('settings-btn').addEventListener('click', () => {
             settingsModal.classList.remove('hidden');
             document.getElementById('settings-name').value = userData.name || '';
-            document.getElementById('settings-addiction').value = userData.addiction || '';
+            
+            if(userData.addiction === 'clean') document.getElementById('s-addiction-clean').checked = true;
+            else document.getElementById('s-addiction-sober').checked = true;
+
             if(userData.gender === 'f') document.getElementById('s-gender-f').checked = true;
             else document.getElementById('s-gender-m').checked = true;
 
@@ -728,8 +843,8 @@
         document.getElementById('save-settings').addEventListener('click', () => {
             const dateVal = document.getElementById('settings-date-input').value;
             const nameVal = document.getElementById('settings-name').value;
-            const addVal = document.getElementById('settings-addiction').value;
-            const genderVal = document.querySelector('input[name="settings-gender"]:checked').value;
+            const addVal = document.querySelector('input[name="settings-addiction"]:checked')?.value || 'sober';
+            const genderVal = document.querySelector('input[name="settings-gender"]:checked')?.value || 'm';
 
             if(dateVal) {
                 userData.startTimestamp = new Date(dateVal).getTime();
@@ -740,20 +855,71 @@
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(userData));
                 
                 startTimer(userData.startTimestamp);
-                document.getElementById('display-addiction').innerText = userData.addiction ? `СВОБОДА ОТ: ${userData.addiction}` : "СВОБОДА";
+                updateStatusText();
+                document.getElementById('display-addiction').innerText = userData.addiction === 'clean' ? "ЧИСТОТА" : "ТРЕЗВОСТЬ";
                 
                 settingsModal.classList.add('hidden');
             }
         });
 
-        // 3D TILT
-        const grid = document.getElementById('countdown-grid');
-        const back = document.getElementById('digit-backdrop');
-        document.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth - 0.5) * 15;
-            const y = (e.clientY / window.innerHeight - 0.5) * 15;
-            grid.style.transform = `rotateX(${-y}deg) rotateY(${x}deg) translateZ(50px)`;
-            back.style.transform = `rotateX(${-y}deg) rotateY(${x}deg) translateZ(40px)`;
+        // INFO MODAL LOGIC (UPDATED WITH LINKS)
+        const infoModal = document.getElementById('info-modal');
+        const groupsList = document.getElementById('groups-list');
+        const cityInput = document.getElementById('city-search');
+        
+        document.getElementById('info-btn').addEventListener('click', () => {
+            infoModal.classList.remove('hidden');
+            renderGroups();
+        });
+        document.getElementById('close-info').addEventListener('click', () => infoModal.classList.add('hidden'));
+
+        function renderGroups() {
+            const filterType = document.querySelector('input[name="group-type"]:checked').value;
+            const filterCity = cityInput.value.toLowerCase();
+            
+            const filtered = GROUPS_DB.filter(g => 
+                g.type === filterType && 
+                g.city.toLowerCase().includes(filterCity)
+            );
+
+            groupsList.innerHTML = '';
+            if (filtered.length === 0) {
+                groupsList.innerHTML = '<div class="text-center text-blue-900/50 text-sm mt-4 font-bold">Ничего не найдено</div>';
+                return;
+            }
+
+            filtered.forEach(g => {
+                const item = document.createElement('div');
+                item.className = 'bg-white/40 p-3 rounded-lg border border-white/50 text-left mb-2';
+                
+                const isOnline = g.city === "Онлайн";
+                const mapLink = isOnline ? '#' : `https://yandex.ru/maps/?text=${encodeURIComponent(g.city + ' ' + g.address)}`;
+                const contactLink = isOnline ? g.contact : `tel:${g.contact}`;
+                
+                item.innerHTML = `
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="font-bold text-blue-900 text-sm">${g.city}</span>
+                        <span class="text-[10px] bg-blue-900 text-white px-2 py-0.5 rounded-full">${g.type}</span>
+                    </div>
+                    
+                    <a href="${mapLink}" ${!isOnline ? 'target="_blank"' : ''} class="text-xs text-blue-900/80 font-semibold mb-1 block hover:underline flex items-center gap-1">
+                        ${g.address} 
+                        ${!isOnline ? '↗' : ''}
+                    </a>
+                    
+                    <div class="text-xs text-blue-800 mb-1">${g.time}</div>
+                    
+                    <a href="${contactLink}" class="text-[10px] text-blue-900/60 font-mono block hover:text-blue-900">
+                        ${g.displayContact}
+                    </a>
+                `;
+                groupsList.appendChild(item);
+            });
+        }
+
+        cityInput.addEventListener('input', renderGroups);
+        document.querySelectorAll('input[name="group-type"]').forEach(r => {
+            r.addEventListener('change', renderGroups);
         });
 
         // QUOTES
@@ -774,11 +940,8 @@
         }
         function startQuoteCycle() {
             const gender = userData.gender || 'm';
-            const name = userData.name || (gender === 'f' ? 'Подруга' : 'Друг');
             const pair = QUOTES_DATA[Math.floor(Math.random() * QUOTES_DATA.length)];
             let txt = gender === 'f' ? pair.f : pair.m;
-            // Inject name
-            txt = txt.replace('{name}', name);
             typeQuote(txt);
         }
 
