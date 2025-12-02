@@ -5,297 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Источник</title>
     
-    <!-- PWA Settings -->
     <meta name="theme-color" content="#1e3c72">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Источник">
     
-    <!-- Icons -->
-    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="icons/favicon.png">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3222/3222672.png">
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3222/3222672.png">
     
-    <!-- Manifest -->
-    <link rel="manifest" id="manifest" href="data:application/manifest+json;charset=utf-8;base64,eyJuYW1lIjoi0JjRgdGC0L7Rh9C90LjQuiIsInNob3J0X25hbWUiOiLQmNGB0YLQvtGH0L3QuNCqIiwiaWNvbnMiOlt7InNyYyI6Imljb25zL2ljb24tNDh4NDgucG5nIiwic2l6ZXMiOiI0OHg0OCIsInR5cGUiOiJpbWFnZS9wbmcifSx7InNyYyI6Imljb25zL2ljb24tNzJ4NzIucG5nIiwic2l6ZXMiOiI3Mng3MiIsInR5cGUiOiJpbWFnZS9wbmcifSx7InNyYyI6Imljb25zL2ljb24tOTZ4OTYucG5nIiwic2l6ZXMiOiI5Nng5NiIsInR5cGUiOiJpbWFnZS9wbmcifSx7InNyYyI6Imljb25zL2ljb24tMTI4eDEyOC5wbmciLCJzaXplcyI6IjEyOHgxMjgiLCJ0eXBlIjoiaW1hZ2UvcG5nIn0seyJzcmMiOiJpY29ucy9pY29uLTE0NHgxNDQucG5nIiwic2l6ZXMiOiIxNDR4MTQ0IiwidHlwZSI6ImltYWdlL3BuZyJ9LHsic3JjIjoiaWNvbnMvaWNvbi0xNTJ4MTUyLnBuZyIsInNpemVzIjoiMTUyeDE1MiIsInR5cGUiOiJpbWFnZS9wbmcifSx7InNyYyI6Imljb25zL2ljb24tMTkyeDE5Mi5wbmciLCJzaXplcyI6IjE5MngxOTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn0seyJzcmMiOiJpY29ucy9pY29uLTI1NngyNTYucG5nIiwic2l6ZXMiOiIyNTZ4MjU2IiwidHlwZSI6ImltYWdlL3BuZyJ9LHsic3JjIjoiaWNvbnMvaWNvbi0zODR4Mzg0LnBuZyIsInNpemVzIjoiMzg0eDM4NCIsInR5cGUiOiJpbWFnZS9wbmcifSx7InNyYyI6Imljb25zL2ljb24tNTEyeDUxMi5wbmciLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2UvcG5nIn1dLCJzdGFydF91cmwiOiIuIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiI2ZmZmZmZiIsInRoZW1lX2NvbG9yIjoiIzAwMDAwMCJ9">
+    <link rel="manifest" id="manifest" href="data:application/manifest+json;charset=utf-8;base64,eyJuYW1lIjoi0JjRgdGC0L7Rh9C90LjQuiIsInNob3J0X25hbWUiOiLQmNGB0YLQvtGH0L3QuNCqIiwic3RhcnRfdXJsIjoiLiIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiMxZTNjNzIiLCJ0aGVtZV9jb2xvciI6IiMxZTNjNzIiLCJpY29ucyI6W3sic3JjIjoiaHR0cHM6Ly9jZG4taWNvbnXMZXJuYWwuZmxhdGljb24uY29tLzUxMi8zMjIyLzMyMjI2NzIucG5nIiwic2l6ZXMiOiI1MTJ4NTEyIiwidHlwZSI6ImltYWdlL3BuZyJ9XX0=">
     
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="style.css">
+    
     <script src="groups_db.js"></script> 
-
-    <style>
-        html, body {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background: linear-gradient(to bottom, #1e3c72, #2a5298, #6dd5fa, #ffffff);
-            font-family: 'Courier New', monospace;
-            -webkit-user-select: none;
-            user-select: none;
-            position: fixed;
-            inset: 0;
-        }
-
-        /* Interaction Fixes */
-        input, textarea, select {
-            -webkit-user-select: text !important;
-            user-select: text !important;
-            pointer-events: auto !important;
-        }
-        button, label, a {
-            pointer-events: auto !important;
-            cursor: pointer !important;
-        }
-
-        .font-serif-elegant { font-family: 'Georgia', serif; }
-        .font-monospace-digital { font-family: 'Courier New', monospace; }
-        
-        #cloud-tunnel {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            perspective: 800px;
-            overflow: hidden;
-            z-index: 0;
-            animation: cameraRoll 60s ease-in-out infinite alternate;
-            pointer-events: none;
-        }
-
-        .cloud-layer {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 800px;
-            height: 800px;
-            margin-left: -400px; 
-            margin-top: -400px;
-            transform-style: preserve-3d;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .cloud-layer img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            image-rendering: auto; 
-        }
-
-        @keyframes flyTowards {
-            0% { transform: translate3d(var(--tx), var(--ty), -1000px) rotate(var(--r)) scale(0.5); opacity: 0; }
-            10% { opacity: 0.8; }
-            80% { opacity: 0.9; }
-            100% { transform: translate3d(var(--tx), var(--ty), 400px) rotate(var(--r)) scale(2); opacity: 0; }
-        }
-
-        @keyframes cameraRoll {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(2deg); }
-        }
-
-        #ui-scene {
-            perspective: 1000px;
-            width: 100%;
-            height: 100%;
-            position: relative;
-            z-index: 10;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        /* GLASS EFFECTS */
-        .holographic-glass {
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            background-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            pointer-events: auto;
-        }
-
-        .holographic-glass-darker {
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            background-color: rgba(30, 58, 138, 0.3);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        /* LAYERS */
-        .layer {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: all 1.5s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        #intro-layer {
-            opacity: 1;
-            transform: scale(1) translateZ(0);
-            z-index: 50; 
-            pointer-events: auto;
-            background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(25, 50, 100, 0.3) 100%);
-        }
-        #intro-layer.dissolved {
-            opacity: 0;
-            transform: scale(1.5) translateZ(-500px);
-            pointer-events: none !important;
-            z-index: -1;
-        }
-
-        #app-layer {
-            opacity: 0;
-            transform: scale(0.8) translateZ(-100px);
-            z-index: 40;
-            pointer-events: none;
-        }
-        #app-layer.active {
-            opacity: 1;
-            transform: scale(1) translateZ(0);
-            pointer-events: auto;
-        }
-
-        /* TEXT STYLES */
-        .text-glow { 
-            color: #ffffff;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5);
-        }
-        .readable-text {
-            color: #1e3a8a;
-            text-shadow: 0 1px 1px rgba(255,255,255,0.8);
-            font-weight: 700;
-        }
-        .digital-value { font-weight: 900; }
-
-        /* CONTROLS */
-        .cinematic-button {
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            color: #1e3a8a;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        .cinematic-button:active { transform: scale(0.95); }
-
-        .control-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #1e3a8a;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        
-        .progress-ring__circle {
-            transition: stroke-dashoffset 0.1s linear;
-            transform: rotate(-90deg);
-            transform-origin: 50% 50%;
-        }
-
-        /* ANIMATIONS */
-        @keyframes levitate {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(0, -20px) rotate(0deg); }
-            100% { transform: translate(0, 0) rotate(0deg); }
-        }
-
-        #floating-wrapper {
-            position: relative;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            animation: levitate 12s ease-in-out infinite; 
-            pointer-events: none;
-        }
-
-        #digit-backdrop {
-            position: absolute;
-            inset: 0;
-            margin: auto;
-            border-radius: 1.5rem;
-            width: 95%;
-            height: 60%; 
-            z-index: -1;
-            transition: transform 0.2s ease-out;
-            background-color: rgba(30, 58, 138, 0.25);
-        }
-
-        #countdown-grid {
-            pointer-events: none; 
-        }
-
-        /* FORMS */
-        .form-input {
-            width: 100%;
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(30, 58, 138, 0.3);
-            border-radius: 0.5rem;
-            padding: 0.5rem;
-            color: #1e3a8a;
-            font-weight: bold;
-            outline: none;
-            transition: background 0.3s;
-        }
-        .form-input:focus { background: rgba(255,255,255,0.4); }
-        .form-label {
-            display: block;
-            color: #1e3a8a;
-            font-size: 0.65rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            font-weight: 800;
-            margin-bottom: 0.25rem;
-            text-shadow: 0 1px 0 rgba(255,255,255,0.5);
-        }
-        
-        .custom-radio input { display: none; }
-        .custom-radio label {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: rgba(255,255,255,0.2);
-            color: #1e3a8a;
-            font-weight: bold;
-            font-size: 0.8rem;
-            cursor: pointer;
-            border: 1px solid rgba(30, 58, 138, 0.3);
-            transition: all 0.3s;
-            flex: 1;
-            text-align: center;
-        }
-        .custom-radio input:checked + label {
-            background: #1e3a8a;
-            color: white;
-        }
-        .custom-radio label:first-of-type { border-radius: 0.5rem 0 0 0.5rem; }
-        .custom-radio label:last-of-type { border-radius: 0 0.5rem 0.5rem 0; border-left: none; }
-
-    </style>
 </head>
 <body>
 
-    <!-- CLOUD CSS ENGINE -->
     <div id="cloud-tunnel"></div>
 
     <div id="ui-scene">
         
-        <!-- INTRO LAYER -->
         <div id="intro-layer" class="layer">
             <div id="intro-setup" class="flex flex-col items-center w-full max-w-md p-6 text-center relative z-30 h-full justify-center">
                 <h1 class="text-5xl md:text-7xl font-serif-elegant text-white mb-2 text-glow" style="text-shadow: 0 0 30px rgba(255,255,255,0.8);">СВЕТ</h1>
@@ -356,18 +87,14 @@
             </div>
         </div>
 
-        <!-- APP LAYER -->
         <div id="app-layer" class="layer">
             
-            <!-- STATUS TEXT (Top Centered) -->
             <div class="absolute top-12 left-0 w-full text-center z-50 pointer-events-none">
                 <h2 id="status-text" class="text-xl md:text-2xl font-serif-elegant font-bold text-white text-glow drop-shadow-md tracking-wide">
-                    <!-- Text injected by JS -->
-                </h2>
+                    </h2>
             </div>
 
             <div id="floating-wrapper" class="max-w-5xl h-[60vh] mt-[-5vh] items-center">
-                <!-- Backdrop -->
                 <div id="digit-backdrop" class="holographic-glass shadow-2xl"></div>
                 
                 <div id="countdown-grid" class="relative z-10 flex flex-col items-center w-full select-none">
@@ -396,7 +123,6 @@
                         <div class="flex flex-col items-center"><span id="seconds">00</span></div>
                     </div>
 
-                    <!-- TOTAL DAYS COUNTER -->
                     <div class="mt-8 w-full flex justify-center">
                         <div class="flex flex-col items-center justify-center px-10 py-4 rounded-xl holographic-glass-darker border border-white/20">
                             <span id="total-days-label" class="text-[10px] md:text-xs uppercase tracking-[0.3em] text-white/70 font-bold mb-1">Всего дней в чистоте</span>
@@ -406,14 +132,11 @@
                 </div>
             </div>
 
-            <!-- QUOTES (Bottom) -->
-            <div id="quote-container" class="mt-4 h-24 w-11/12 max-w-xl text-center flex items-center justify-center relative z-20">
-                <p id="quote-text" class="text-sm md:text-lg italic text-blue-900 font-serif-elegant leading-relaxed font-bold" style="text-shadow: 0 1px 1px rgba(255,255,255,0.8);"></p>
+            <div id="quote-container">
+                <p id="quote-text" class="text-sm md:text-lg italic text-blue-900 font-serif-elegant leading-relaxed font-bold w-11/12 max-w-xl text-center" style="text-shadow: 0 1px 1px rgba(255,255,255,0.8);"></p>
             </div>
 
-            <!-- BUTTONS CONTAINER -->
             <div class="absolute bottom-16 w-full flex justify-center items-center gap-8 z-50 pointer-events-auto">
-                <!-- Settings Button -->
                 <button id="settings-btn" class="control-btn hover:bg-white/40 active:scale-95" title="Настройки">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.52a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
@@ -421,7 +144,6 @@
                     </svg>
                 </button>
 
-                <!-- INFO Button (Groups) -->
                 <button id="info-btn" class="control-btn hover:bg-white/40 active:scale-95" title="Поиск групп">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="10"></circle>
@@ -430,7 +152,6 @@
                     </svg>
                 </button>
 
-                <!-- Reset Button -->
                 <button id="reset-btn" class="control-btn hover:bg-red-100 hover:border-red-400/50 text-blue-900 hover:text-red-600 active:scale-95" title="Сброс (удерживайте)">
                     <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 60 60">
                         <circle class="progress-ring__circle" stroke="#ef4444" stroke-width="3" fill="transparent" r="28" cx="30" cy="30" stroke-dasharray="175.9" stroke-dashoffset="175.9"></circle>
@@ -442,7 +163,6 @@
                 </button>
             </div>
 
-            <!-- ADDICTION BADGE (Very Bottom) -->
             <div class="absolute bottom-1 w-full text-center z-40 pointer-events-none">
                 <div class="inline-block px-4 py-1 rounded-full holographic-glass border-none bg-white/20">
                     <span id="display-addiction" class="text-[9px] uppercase tracking-widest font-bold text-blue-900 opacity-70">СВОБОДА</span>
@@ -451,7 +171,6 @@
         </div>
     </div>
 
-    <!-- MODAL: RESET -->
     <div id="modal-overlay" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-6 opacity-0 transition-opacity duration-500">
         <div id="modal-content" class="holographic-glass p-8 rounded-3xl max-w-sm w-full text-center transform scale-90 transition-transform duration-500 border border-white/50 bg-white/40">
             <h3 class="text-2xl font-serif-elegant text-blue-900 mb-4 font-bold">Всё в порядке</h3>
@@ -467,7 +186,6 @@
         </div>
     </div>
 
-    <!-- MODAL: SETTINGS -->
     <div id="settings-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-6 backdrop-blur-md bg-white/30 transition-opacity duration-300">
         <div class="holographic-glass p-6 rounded-3xl max-w-sm w-full relative border border-white/50 bg-white/60 overflow-y-auto max-h-[90vh]">
             <h3 class="text-xl font-serif-elegant text-blue-900 mb-6 text-center font-bold">Настройки</h3>
@@ -517,431 +235,108 @@
         </div>
     </div>
 
-    <!-- MODAL: INFO (GROUPS) -->
     <div id="info-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4 backdrop-blur-md bg-white/30 transition-opacity duration-300">
         <div class="holographic-glass p-6 rounded-3xl max-w-sm w-full relative border border-white/50 bg-white/70 overflow-hidden flex flex-col max-h-[85vh]">
+            
             <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-serif-elegant text-blue-900 font-bold">Группы</h3>
+                <div class="flex items-center gap-3">
+                    <h3 class="text-xl font-serif-elegant text-blue-900 font-bold">Группы</h3>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdZkzMh5CysBiEGaiUE0SXGtEngw1AnHzB15F6KQxriXEf-Ow/viewform?usp=dialog" target="_blank" class="text-blue-900/60 hover:text-blue-900 transition-transform hover:scale-110" title="Добавить группу">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="16"></line>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                        </svg>
+                    </a>
+                </div>
                 <button id="close-info" class="text-blue-900/50 hover:text-blue-900 p-1 font-bold text-xl">✕</button>
             </div>
 
-            <!-- Filters -->
             <div class="space-y-4 mb-4 flex-shrink-0">
                 <input type="text" id="city-search" placeholder="Поиск города..." class="form-input text-center text-sm" style="background: rgba(255,255,255,0.5);">
                 
                 <div class="flex custom-radio">
                     <div class="flex-1 flex">
                         <input type="radio" name="group-type" id="type-aa" value="AA" checked>
-                        <label for="type-aa">АА (Алкоголь)</label>
+                        <label for="type-aa">АА</label>
                     </div>
                     <div class="flex-1 flex">
                         <input type="radio" name="group-type" id="type-na" value="NA">
-                        <label for="type-na">АН (Вещества)</label>
+                        <label for="type-na">АН</label>
                     </div>
                 </div>
             </div>
 
-            <!-- List -->
             <div id="groups-list" class="overflow-y-auto space-y-3 flex-1 pr-1 custom-scrollbar">
-                <!-- Items will be injected here -->
-            </div>
+                </div>
         </div>
     </div>
 
-    <script>
-        // --- CLOUD ENGINE ---
-        const CLOUD_IMAGES = ['img/cloud-01.png', 'img/cloud-02.png', 'img/cloud-03.png', 'img/cloud-04.png'];
-        const TUNNEL = document.getElementById('cloud-tunnel');
-        const CLOUD_COUNT = 15;
-        const FLY_DURATION = 12;
-
-        function initClouds() {
-            for (let i = 0; i < CLOUD_COUNT; i++) createCloud(i);
-        }
-
-        function createCloud(index) {
-            const el = document.createElement('div');
-            el.className = 'cloud-layer';
-            const img = document.createElement('img');
-            img.src = CLOUD_IMAGES[Math.floor(Math.random() * CLOUD_IMAGES.length)];
-            // Fallback
-            img.onerror = () => { img.src = 'https://assets.codepen.io/1233608/cloud-01.png'; };
-            el.appendChild(img);
-
-            const x = (Math.random() - 0.5) * 800;
-            const y = (Math.random() - 0.5) * 400;
-            const r = (Math.random() - 0.5) * 60;
-            const delay = -(FLY_DURATION / CLOUD_COUNT) * index;
-
-            el.style.setProperty('--tx', `${x}px`);
-            el.style.setProperty('--ty', `${y}px`);
-            el.style.setProperty('--r', `${r}deg`);
-            el.style.animation = `flyTowards ${FLY_DURATION}s linear infinite`;
-            el.style.animationDelay = `${delay}s`;
-            TUNNEL.appendChild(el);
-        }
-
-        // --- DATA & LOGIC ---
-        const STORAGE_KEY = 'sobriety_data_v2';
-        
-        // Quotes WITHOUT names
-        const QUOTES_DATA = [
-            { m: "Каждый день — твоя победа.", f: "Каждый день — твоя победа." },
-            { m: "Ты кузнец своего счастья.", f: "Ты творец своего счастья." },
-            { m: "Иди вперед, не оборачивайся.", f: "Иди вперед, не оборачивайся." },
-            { m: "Твоя воля — твой меч.", f: "Твоя воля — твой щит." },
-            { m: "Свет внутри тебя разгонит тьму.", f: "Свет внутри тебя разгонит тьму." },
-            { m: "Ты не один на этом пути.", f: "Ты не одна на этом пути." },
-            { m: "Сегодня ты стал лучше, чем вчера.", f: "Сегодня ты стала лучше, чем вчера." },
-            { m: "Держись курса, брат.", f: "Держись курса, сестра." },
-            { m: "Ты достоин лучшей жизни.", f: "Ты достойна лучшей жизни." },
-            { m: "Ты вернул себе свою жизнь.", f: "Ты вернула себе свою жизнь." }
-        ];
-
-
-        // State
-        let userData = {
-            startTimestamp: null,
-            name: '',
-            gender: 'm',
-            addiction: 'sober' // 'sober' or 'clean'
-        };
-
-        const introLayer = document.getElementById('intro-layer');
-        const appLayer = document.getElementById('app-layer');
-        const introSetup = document.getElementById('intro-setup');
-        const introReturning = document.getElementById('intro-returning');
-        let countdownInterval;
-
-        function initialize() {
-            initClouds();
-            document.body.addEventListener('touchstart', () => { if(navigator.vibrate) navigator.vibrate(10); }, {once:true});
-
-            const loaded = localStorage.getItem(STORAGE_KEY);
-            if (loaded) {
-                userData = JSON.parse(loaded);
-                showReturning();
-            } else {
-                showSetup();
-            }
-        }
-
-        function showSetup() {
-            introReturning.classList.add('hidden'); introReturning.style.display = 'none';
-            introSetup.classList.remove('hidden'); introSetup.style.display = 'flex';
-        }
-
-        function showReturning() {
-            introSetup.classList.add('hidden'); introSetup.style.display = 'none';
-            introReturning.classList.remove('hidden'); introReturning.style.display = 'flex';
+    <div id="group-detail-modal" class="fixed inset-0 z-[110] hidden flex items-center justify-center px-4 backdrop-blur-lg bg-blue-900/20 transition-opacity duration-300">
+        <div class="holographic-glass p-6 rounded-3xl max-w-sm w-full relative border border-white/50 bg-white/90 overflow-hidden flex flex-col shadow-2xl max-h-[90vh]">
             
-            const welcomeMsg = document.getElementById('welcome-message');
-            const namePart = userData.name ? `, ${userData.name}` : '';
-            welcomeMsg.innerText = `С возвращением${namePart}`; 
+            <button id="close-detail" class="absolute top-4 right-4 text-blue-900/50 hover:text-blue-900 p-1 font-bold text-xl z-20">✕</button>
             
-            startTimer(userData.startTimestamp);
-        }
+            <div class="overflow-y-auto custom-scrollbar flex-1 pr-1 pb-4">
+                <div class="text-center mb-6 mt-4">
+                    <h3 id="detail-group-name" class="text-2xl font-serif-elegant text-blue-900 font-bold mb-1 leading-tight">Название</h3>
+                    <p id="detail-group-city" class="text-sm font-bold text-blue-900/60 uppercase tracking-widest">Город</p>
+                    <p id="detail-group-metro" class="text-xs font-bold text-blue-900/50 mt-1"></p>
+                </div>
 
-        function enterApp() {
-            if(navigator.vibrate) navigator.vibrate(50);
-            
-            updateStatusText();
-            document.getElementById('display-addiction').innerText = userData.addiction === 'clean' ? "ЧИСТОТА" : "ТРЕЗВОСТЬ";
-
-            introLayer.classList.add('dissolved');
-            setTimeout(() => {
-                introLayer.style.display = 'none';
-                appLayer.classList.add('active');
-                startQuoteCycle();
-            }, 800);
-        }
-
-        function updateStatusText() {
-            const name = userData.name || (userData.gender === 'f' ? "Подруга" : "Друг");
-            let state = "";
-            let daysLabel = "";
-            
-            if (userData.gender === 'f') {
-                state = userData.addiction === 'clean' ? "чистая" : "трезвая";
-            } else {
-                state = userData.addiction === 'clean' ? "чистый" : "трезвый";
-            }
-            document.getElementById('status-text').innerText = `${name}, ты ${state}`;
-            
-            daysLabel = userData.addiction === 'clean' ? "Всего дней в чистоте" : "Всего дней в трезвости";
-            document.getElementById('total-days-label').innerText = daysLabel;
-        }
-
-        // SAVE & START
-        document.getElementById('start-journey-btn').addEventListener('click', () => {
-            const dateInput = document.getElementById('intro-date-input');
-            const nameInput = document.getElementById('intro-name');
-            // FIXED SAFE CHECK: Handle possible null if for some reason nothing is checked (though HTML defaults it)
-            const addRadio = document.querySelector('input[name="addiction"]:checked');
-            const addictionVal = addRadio ? addRadio.value : 'sober';
-            
-            const genRadio = document.querySelector('input[name="gender"]:checked');
-            const genderVal = genRadio ? genRadio.value : 'm';
-
-            const dateVal = dateInput ? dateInput.value : '';
-            const nameVal = nameInput ? nameInput.value : '';
-
-            if (!dateVal) {
-                document.getElementById('intro-setup').classList.add('animate-pulse');
-                setTimeout(()=>document.getElementById('intro-setup').classList.remove('animate-pulse'), 500);
-                return;
-            }
-            
-            const ts = new Date(dateVal).getTime();
-            if (isNaN(ts) || ts > Date.now()) return alert('Дата должна быть в прошлом');
-
-            userData = {
-                startTimestamp: ts,
-                name: nameVal,
-                gender: genderVal,
-                addiction: addictionVal
-            };
-            
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(userData));
-            startTimer(ts);
-            enterApp();
-        });
-
-        document.getElementById('enter-app-btn').addEventListener('click', enterApp);
-
-        function startTimer(startTimestamp) {
-            if(countdownInterval) clearInterval(countdownInterval);
-            const update = () => {
-                const now = Date.now();
-                const diff = now - startTimestamp;
-                if(diff < 0) return; 
-                
-                const dateStart = new Date(startTimestamp);
-                const dateNow = new Date(now);
-
-                let years = dateNow.getFullYear() - dateStart.getFullYear();
-                let months = dateNow.getMonth() - dateStart.getMonth();
-                let days = dateNow.getDate() - dateStart.getDate();
-                if (days < 0) {
-                    months--;
-                    const prevMonth = new Date(dateNow.getFullYear(), dateNow.getMonth(), 0);
-                    days += prevMonth.getDate();
-                }
-                if (months < 0) {
-                    years--;
-                    months += 12;
-                }
-
-                const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
-                document.getElementById('total-days').innerText = totalDays;
-
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const secs = Math.floor((diff % (1000 * 60)) / 1000);
-
-                document.getElementById('years').innerText = String(years).padStart(2,'0');
-                document.getElementById('months').innerText = String(months).padStart(2,'0');
-                document.getElementById('days').innerText = String(days).padStart(2,'0');
-                document.getElementById('hours').innerText = String(hours).padStart(2,'0');
-                document.getElementById('minutes').innerText = String(mins).padStart(2,'0');
-                document.getElementById('seconds').innerText = String(secs).padStart(2,'0');
-                
-                document.getElementById('years-label').innerText = getPlural(years, 'ГОД', 'ГОДА', 'ЛЕТ');
-                document.getElementById('months-label').innerText = getPlural(months, 'МЕСЯЦ', 'МЕСЯЦА', 'МЕСЯЦЕВ');
-                document.getElementById('days-label').innerText = getPlural(days, 'ДЕНЬ', 'ДНЯ', 'ДНЕЙ');
-            };
-            update();
-            countdownInterval = setInterval(update, 1000);
-        }
-
-        function getPlural(n, one, few, many) {
-            n = Math.abs(n) % 100;
-            const n1 = n % 10;
-            if (n > 10 && n < 20) return many;
-            if (n1 > 1 && n1 < 5) return few;
-            if (n1 === 1) return one;
-            return many;
-        }
-
-        // RESET LOGIC
-        const resetBtn = document.getElementById('reset-btn');
-        const progressCircle = document.querySelector('.progress-ring__circle');
-        const circleLength = 175.9;
-        let pressTimer, isPressing = false;
-
-        function startPress() {
-            isPressing = true;
-            progressCircle.style.transition = 'stroke-dashoffset 1.5s linear';
-            progressCircle.style.strokeDashoffset = '0';
-            pressTimer = setTimeout(() => { if(isPressing) { showResetModal(); cancelPress(); }}, 1500);
-        }
-        function cancelPress() {
-            isPressing = false;
-            clearTimeout(pressTimer);
-            progressCircle.style.transition = 'stroke-dashoffset 0.2s linear';
-            progressCircle.style.strokeDashoffset = circleLength;
-        }
-        resetBtn.addEventListener('mousedown', startPress);
-        resetBtn.addEventListener('touchstart', (e) => { e.preventDefault(); startPress(); });
-        resetBtn.addEventListener('mouseup', cancelPress);
-        resetBtn.addEventListener('touchend', cancelPress);
-
-        // MODALS SHOW/HIDE
-        const modalOverlay = document.getElementById('modal-overlay');
-        const modalContent = document.getElementById('modal-content');
-        function showResetModal() {
-            if(navigator.vibrate) navigator.vibrate(100);
-            modalOverlay.classList.remove('hidden');
-            requestAnimationFrame(() => {
-                modalOverlay.classList.remove('opacity-0');
-                modalContent.classList.remove('scale-90');
-                modalContent.classList.add('scale-100');
-            });
-        }
-        function hideResetModal() {
-            modalOverlay.classList.add('opacity-0');
-            modalContent.classList.remove('scale-100');
-            modalContent.classList.add('scale-90');
-            setTimeout(() => modalOverlay.classList.add('hidden'), 500);
-        }
-        document.getElementById('cancel-reset').addEventListener('click', hideResetModal);
-        document.getElementById('confirm-reset').addEventListener('click', () => {
-            localStorage.removeItem(STORAGE_KEY);
-            location.reload(); 
-        });
-
-        // SETTINGS
-        const settingsModal = document.getElementById('settings-modal');
-        document.getElementById('settings-btn').addEventListener('click', () => {
-            settingsModal.classList.remove('hidden');
-            document.getElementById('settings-name').value = userData.name || '';
-            
-            if(userData.addiction === 'clean') document.getElementById('s-addiction-clean').checked = true;
-            else document.getElementById('s-addiction-sober').checked = true;
-
-            if(userData.gender === 'f') document.getElementById('s-gender-f').checked = true;
-            else document.getElementById('s-gender-m').checked = true;
-
-            if(userData.startTimestamp) {
-                const date = new Date(parseInt(userData.startTimestamp));
-                const local = new Date(date.getTime() - date.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
-                document.getElementById('settings-date-input').value = local;
-            }
-        });
-        document.getElementById('close-settings').addEventListener('click', () => settingsModal.classList.add('hidden'));
-        
-        document.getElementById('save-settings').addEventListener('click', () => {
-            const dateInput = document.getElementById('settings-date-input');
-            const nameInput = document.getElementById('settings-name');
-            const addVal = document.querySelector('input[name="settings-addiction"]:checked')?.value || 'sober';
-            const genderVal = document.querySelector('input[name="settings-gender"]:checked')?.value || 'm';
-
-            if(dateInput && dateInput.value) {
-                userData.startTimestamp = new Date(dateInput.value).getTime();
-                userData.name = nameInput ? nameInput.value : '';
-                userData.addiction = addVal;
-                userData.gender = genderVal;
-                
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(userData));
-                
-                startTimer(userData.startTimestamp);
-                updateStatusText();
-                
-                settingsModal.classList.add('hidden');
-            }
-        });
-
-        // INFO MODAL LOGIC (UPDATED WITH LINKS)
-        const infoModal = document.getElementById('info-modal');
-        const groupsList = document.getElementById('groups-list');
-        const cityInput = document.getElementById('city-search');
-        
-        document.getElementById('info-btn').addEventListener('click', () => {
-            infoModal.classList.remove('hidden');
-            renderGroups();
-        });
-        document.getElementById('close-info').addEventListener('click', () => infoModal.classList.add('hidden'));
-
-        function renderGroups() {
-            const typeRadio = document.querySelector('input[name="group-type"]:checked');
-            const filterType = typeRadio ? typeRadio.value : 'AA';
-            
-            const cityEl = document.getElementById('city-search');
-            const filterCity = cityEl ? cityEl.value.toLowerCase() : '';
-            
-            const filtered = GROUPS_DB.filter(g => 
-                g.type === filterType && 
-                g.city.toLowerCase().includes(filterCity)
-            );
-
-            groupsList.innerHTML = '';
-            if (filtered.length === 0) {
-                groupsList.innerHTML = '<div class="text-center text-blue-900/50 text-sm mt-4 font-bold">Ничего не найдено</div>';
-                return;
-            }
-
-            filtered.forEach(g => {
-                const item = document.createElement('div');
-                item.className = 'bg-white/40 p-3 rounded-lg border border-white/50 text-left mb-2';
-                
-                const isOnline = g.city === "Онлайн";
-                const mapLink = isOnline ? '#' : `https://yandex.ru/maps/?text=${encodeURIComponent(g.city + ' ' + g.address)}`;
-                const contactLink = isOnline ? g.contact : `tel:${g.contact}`;
-                const communityName = g.communityName || ''; // Use community name if available
-
-                item.innerHTML = `
-                    <div class="flex justify-between items-center mb-1">
-                        <div>
-                            <span class="font-bold text-blue-900 text-sm">${g.city}</span>
-                            ${communityName ? `<br><span class="text-xs text-blue-900/70 font-semibold">"${communityName}"</span>` : ''}
-                        </div>
-                        <span class="text-[10px] bg-blue-900 text-white px-2 py-0.5 rounded-full self-start">${g.type}</span>
+                <div class="space-y-3 text-left mb-6">
+                    <div class="bg-white/40 p-3 rounded-xl border border-white/60">
+                        <label class="text-[9px] uppercase tracking-widest text-blue-900/50 font-bold block mb-1">Адрес</label>
+                        <p id="detail-group-address" class="text-blue-900 font-bold text-sm leading-snug">...</p>
                     </div>
                     
-                    <a href="${mapLink}" ${!isOnline ? 'target="_blank"' : ''} class="text-xs text-blue-900/80 font-semibold mb-1 block hover:underline flex items-center gap-1">
-                        ${g.address} 
-                        ${!isOnline ? '↗' : ''}
-                    </a>
+                    <div class="bg-white/40 p-3 rounded-xl border border-white/60">
+                        <label class="text-[9px] uppercase tracking-widest text-blue-900/50 font-bold block mb-1">Время</label>
+                        <p id="detail-group-time" class="text-blue-900 font-bold text-sm">...</p>
+                    </div>
                     
-                    <div class="text-xs text-blue-800 mb-1">${g.time}</div>
+                    <div class="bg-white/40 p-3 rounded-xl border border-white/60">
+                        <label class="text-[9px] uppercase tracking-widest text-blue-900/50 font-bold block mb-1">Контакты</label>
+                        <p id="detail-group-contact" class="text-blue-900 font-bold font-mono text-sm mb-1">...</p>
+                        
+                        <div id="detail-links-container" class="flex flex-wrap gap-2 mt-2">
+                            <a id="detail-group-website" href="#" target="_blank" class="hidden text-[10px] bg-blue-100 text-blue-900 px-2 py-1 rounded border border-blue-200 hover:bg-blue-200">Сайт</a>
+                            <a id="detail-group-email" href="#" class="hidden text-[10px] bg-blue-100 text-blue-900 px-2 py-1 rounded border border-blue-200 hover:bg-blue-200">Email</a>
+                        </div>
+                    </div>
+
+                    <div id="detail-directions-block" class="bg-white/40 p-3 rounded-xl border border-white/60 hidden">
+                        <label class="text-[9px] uppercase tracking-widest text-blue-900/50 font-bold block mb-1">Как добраться</label>
+                        <p id="detail-group-directions" class="text-blue-900 font-medium text-xs leading-relaxed max-h-32 overflow-y-auto custom-scrollbar">...</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-3 mt-auto">
+                    <button id="detail-btn-call" class="cinematic-button py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-blue-900 hover:text-white group transition-all">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="opacity-70 group-hover:opacity-100">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        <span id="detail-btn-call-text" class="font-bold text-xs tracking-widest">ПОЗВОНИТЬ</span>
+                    </button>
                     
-                    <a href="${contactLink}" class="text-[10px] text-blue-900/60 font-mono block hover:text-blue-900">
-                        ${g.displayContact}
-                    </a>
-                `;
-                groupsList.appendChild(item);
-            });
-        }
+                    <button id="detail-btn-map" class="py-3 rounded-xl bg-white/50 border border-blue-900/10 text-blue-900 font-bold text-xs tracking-widest hover:bg-white flex items-center justify-center gap-2">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                            <line x1="8" y1="2" x2="8" y2="18"></line>
+                            <line x1="16" y1="6" x2="16" y2="22"></line>
+                        </svg>
+                        ОТКРЫТЬ КАРТУ
+                    </button>
+                    
+                    <button id="back-to-list" class="mt-1 text-blue-900/50 hover:text-blue-900 text-xs font-bold tracking-widest uppercase">
+                        ← Назад к списку
+                    </button>
+                </div>
+            </div>
 
-        cityInput.addEventListener('input', renderGroups);
-        document.querySelectorAll('input[name="group-type"]').forEach(r => {
-            r.addEventListener('change', renderGroups);
-        });
-
-        // QUOTES
-        const quoteEl = document.getElementById('quote-text');
-        function typeQuote(text) {
-            quoteEl.textContent = '';
-            let i = 0;
-            function next() {
-                if(i < text.length) {
-                    quoteEl.textContent += text.charAt(i);
-                    i++;
-                    setTimeout(next, 50);
-                } else {
-                    setTimeout(startQuoteCycle, 8000);
-                }
-            }
-            next();
-        }
-        function startQuoteCycle() {
-            const gender = userData.gender || 'm';
-            const pair = QUOTES_DATA[Math.floor(Math.random() * QUOTES_DATA.length)];
-            let txt = gender === 'f' ? pair.f : pair.m;
-            typeQuote(txt);
-        }
-
-        window.onload = initialize;
-    </script>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
 </body>
 </html>
